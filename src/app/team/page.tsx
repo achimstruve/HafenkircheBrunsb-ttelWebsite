@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import React from 'react'
 import Image from 'next/image'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
 import { Heart } from 'lucide-react'
@@ -49,7 +50,8 @@ const team = [
     names: 'Iris Moesker',
     role: 'Welcomedienst Leitung',
     photo: '/images/team/iris.jpg',
-    photoPosition: 'object-top',
+    photoPosition: 'object-[center_25%]',
+    containerStyle: { aspectRatio: '2/3', minHeight: '400px', maxHeight: '600px' } as React.CSSProperties,
     description:
       'Iris leitet den Welcomedienst und sorgt dafür, dass sich jeder Besucher willkommen fühlt. Sie bringt ein großes Herz für Menschen und viel Erfahrung aus der Gemeindearbeit mit.',
     highlight: 'Willkommen & Gastfreundschaft',
@@ -125,12 +127,17 @@ export default function TeamPage() {
               <StaggerItem key={member.names}>
                 <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
                   {/* Photo — no overlay text at all */}
-                  <div className="relative w-full overflow-hidden shrink-0" style={{ aspectRatio: '3/4', minHeight: '320px', maxHeight: '520px' }}>
+                  <div
+                    className="relative w-full overflow-hidden shrink-0"
+                    style={'containerStyle' in member && member.containerStyle
+                      ? member.containerStyle
+                      : { aspectRatio: '3/4', minHeight: '320px', maxHeight: '520px' }}
+                  >
                     <Image
                       src={member.photo}
                       alt={member.names}
                       fill
-                      className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                      className={`object-cover ${member.photoPosition} group-hover:scale-105 transition-transform duration-700`}
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>

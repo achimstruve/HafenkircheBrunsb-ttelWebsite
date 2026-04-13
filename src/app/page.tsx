@@ -17,7 +17,6 @@ import {
   Mail,
 } from 'lucide-react'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
-import ParticleBackground from '@/components/ParticleBackground'
 import Lightbox, { type LightboxImage } from '@/components/Lightbox'
 
 const visionImages: LightboxImage[] = [
@@ -56,6 +55,7 @@ const events = [
     description: 'Gemeinsam feiern, anbeten und Gottes Wort hören.',
     color: 'from-[#c9a84c] to-[#e8c56d]',
     photo: '/images/achim-predigt.jpg',
+    cta: null as null | { label: string; href: string },
   },
   {
     title: 'Power Gebet',
@@ -64,16 +64,18 @@ const events = [
     icon: Heart,
     description: 'Im Gebet füreinander eintreten und Gott begegnen.',
     color: 'from-[#3060b0] to-[#4a80d0]',
-    photo: '/images/lobpreisband.jpg',
+    photo: '/images/gebet-vorne.jpg',
+    cta: null as null | { label: string; href: string },
   },
   {
     title: 'Mutmacher Zoom',
     day: 'Dienstag',
     time: '19:00 Uhr',
     icon: Users,
-    description: 'Online dabei sein: Fragen stellen, beten, uns kennenlernen.',
+    description: 'Einfach online reinschnuppern, Fragen stellen, beten — ohne Verpflichtung.',
     color: 'from-[#254a8a] to-[#3060b0]',
-    photo: '/images/kreuz-gebet.jpg',
+    photo: '/images/young-ladies-church.jpg',
+    cta: { label: 'Zoom-Link anfragen', href: 'mailto:info@hafenkirche.com?subject=Mutmacher Zoom Zugangsdaten' },
   },
 ]
 
@@ -116,9 +118,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Fixed full-viewport particle background — sits behind all content */}
-      <ParticleBackground />
-
       {/* ─── HERO ─── */}
       <section
         ref={heroRef}
@@ -129,13 +128,13 @@ export default function HomePage() {
           style={{ y: heroY }}
           className="absolute inset-0 pointer-events-none"
         >
-          {/* Church building photo — very subtle */}
+          {/* Worship background photo */}
           <div className="absolute inset-0">
             <Image
-              src="/images/church-building.jpg"
+              src="/images/hero-worship.png"
               alt=""
               fill
-              className="object-cover opacity-25"
+              className="object-cover object-center opacity-30"
               priority
             />
           </div>
@@ -296,12 +295,12 @@ export default function HomePage() {
               <StaggerItem key={event.title}>
                 <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
                   {event.photo ? (
-                    <div className="relative h-56 overflow-hidden shrink-0">
+                    <div className="relative h-64 overflow-hidden shrink-0">
                       <Image
                         src={event.photo}
                         alt={event.title}
                         fill
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
@@ -313,7 +312,15 @@ export default function HomePage() {
                       <event.icon className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                    <p className="text-gray-400 text-sm mb-6 leading-relaxed flex-1">{event.description}</p>
+                    <p className="text-gray-400 text-sm mb-4 leading-relaxed flex-1">{event.description}</p>
+                    {event.cta && (
+                      <a
+                        href={event.cta.href}
+                        className="inline-flex items-center gap-2 mb-4 text-sm font-semibold text-[#c9a84c] hover:underline"
+                      >
+                        {event.cta.label} →
+                      </a>
+                    )}
                     <div className="flex items-center gap-4 pt-5 border-t border-white/5">
                       <div className="flex items-center gap-1.5 text-[#c9a84c] text-sm font-medium">
                         <Calendar className="w-4 h-4" />
@@ -584,6 +591,23 @@ export default function HomePage() {
               <p className="text-gray-400 text-lg max-w-xl mx-auto">
                 Du findest uns in Brunsbüttel, mitten in der Stadt, nah an den Menschen.
               </p>
+            </div>
+          </AnimatedChild>
+
+          <AnimatedChild delay={0.15}>
+            <div className="relative h-56 rounded-2xl overflow-hidden border border-[#c9a84c]/20 shadow-xl shadow-black/40 mb-4">
+              <Image
+                src="/images/church-building.jpg"
+                alt="Hafenkirche Brunsbüttel Gebäude"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 800px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d1526]/50 to-transparent" />
+              <div className="absolute bottom-4 left-5 text-white">
+                <p className="font-bold text-sm">Hafenkirche Brunsbüttel</p>
+                <p className="text-gray-300 text-xs">Schleusenstraße 10</p>
+              </div>
             </div>
           </AnimatedChild>
 
