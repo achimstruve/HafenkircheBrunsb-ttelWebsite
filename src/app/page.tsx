@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRef, useState, useCallback } from 'react'
@@ -18,7 +18,34 @@ import {
 } from 'lucide-react'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
 import ParticleBackground from '@/components/ParticleBackground'
-import Lightbox from '@/components/Lightbox'
+import Lightbox, { type LightboxImage } from '@/components/Lightbox'
+
+const visionImages: LightboxImage[] = [
+  { src: '/images/kreuz-gebet.jpg', alt: 'Gebet' },
+  { src: '/images/taufe-freude.jpg', alt: 'Taufe' },
+  { src: '/images/gebet-gottesdienst.jpg', alt: 'Gottesdienst' },
+  { src: '/images/lobpreisband-singt.jpg', alt: 'Lobpreis' },
+]
+
+const galleryImages: LightboxImage[] = [
+  { src: '/images/young-ladies-church.jpg', alt: 'Junge Frauen vor der Kirche' },
+  { src: '/images/lounge-kaffee.jpg', alt: 'Kaffee & Gemeinschaft' },
+  { src: '/images/kindergottesdienst.jpg', alt: 'Kindergottesdienst' },
+  { src: '/images/jesus-gang.jpg', alt: 'Junge Menschen' },
+  { src: '/images/wacken-gebet.jpg', alt: 'Wackenmission — Bibeln verteilen' },
+  { src: '/images/hochzeit.jpg', alt: 'Hochzeit' },
+  { src: '/images/worship-gitarrist.jpg', alt: 'Worship' },
+  { src: '/images/gebet-vorne.jpg', alt: 'Gebet für Jung und Alt' },
+  { src: '/images/lounge.jpg', alt: 'Lounge Buffet' },
+  { src: '/images/bibel.jpg', alt: 'Bibel lesen mit markierten Versen' },
+  { src: '/images/achim-predigt-2.jpg', alt: 'Dr. Achim Struve predigt' },
+  { src: '/images/taufe-1.jpg', alt: 'Taufe' },
+  { src: '/images/young-people.jpg', alt: 'Junge Menschen sitzen und lachen' },
+  { src: '/images/young-people-cross.jpg', alt: 'Junge Menschen feiern vor dem Kreuz' },
+  { src: '/images/kinder-bibel.jpg', alt: 'Gebet für ein Kind' },
+  { src: '/images/gebet-gottesdienst-2.jpg', alt: 'Gebet im Gottesdienst' },
+  { src: '/images/lobpreisband.jpg', alt: 'Gebetsabend Lobpreisband' },
+]
 
 const events = [
   {
@@ -46,7 +73,7 @@ const events = [
     icon: Users,
     description: 'Online dabei sein: Fragen stellen, beten, uns kennenlernen.',
     color: 'from-[#254a8a] to-[#3060b0]',
-    photo: null,
+    photo: '/images/kreuz-gebet.jpg',
   },
 ]
 
@@ -75,9 +102,10 @@ const valuesPreview = [
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null)
-  const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null)
-  const openLightbox = useCallback((src: string, alt: string) => setLightboxImg({ src, alt }), [])
-  const closeLightbox = useCallback(() => setLightboxImg(null), [])
+  const [galleryIndex, setGalleryIndex] = useState<number | null>(null)
+  const [visionIndex, setVisionIndex] = useState<number | null>(null)
+  const closeGallery = useCallback(() => setGalleryIndex(null), [])
+  const closeVision = useCallback(() => setVisionIndex(null), [])
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -276,7 +304,6 @@ export default function HomePage() {
                         className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1526]/25 to-transparent" />
                     </div>
                   ) : null}
                   <div className="p-8 flex flex-col flex-1">
@@ -347,14 +374,24 @@ export default function HomePage() {
             </AnimatedChild>
             <AnimatedChild direction="left" delay={0.2}>
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  { src: '/images/kreuz-gebet.jpg', alt: 'Gebet' },
-                  { src: '/images/taufe-freude.jpg', alt: 'Taufe' },
-                  { src: '/images/gebet-gottesdienst.jpg', alt: 'Gottesdienst' },
-                  { src: '/images/lobpreisband-singt.jpg', alt: 'Lobpreis' },
-                ].map(({ src, alt }) => (
-                  <div key={src} className="relative h-36 rounded-xl overflow-hidden">
-                    <Image src={src} alt={alt} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="25vw" />
+                {visionImages.map(({ src, alt }, i) => (
+                  <div
+                    key={src}
+                    className="relative h-36 rounded-xl overflow-hidden cursor-pointer group"
+                    onClick={() => setVisionIndex(i)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Bild vergrößern: ${alt}`}
+                    onKeyDown={(e) => e.key === 'Enter' && setVisionIndex(i)}
+                  >
+                    <Image
+                      src={src}
+                      alt={alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="25vw"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                 ))}
               </div>
@@ -415,45 +452,31 @@ export default function HomePage() {
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {[
-                { src: '/images/young-ladies-church.jpg', alt: 'Junge Frauen vor der Kirche', tall: true },
-                { src: '/images/lounge-kaffee.jpg', alt: 'Kaffee & Gemeinschaft', tall: false },
-                { src: '/images/kindergottesdienst.jpg', alt: 'Kindergottesdienst', tall: false },
-                { src: '/images/jesus-gang.jpg', alt: 'Junge Menschen', tall: true },
-                { src: '/images/wacken-gebet.jpg', alt: 'Wackenmission — Bibeln verteilen', tall: false },
-                { src: '/images/hochzeit.jpg', alt: 'Hochzeit', tall: false },
-                { src: '/images/worship-gitarrist.jpg', alt: 'Worship', tall: false },
-                { src: '/images/gebet-vorne.jpg', alt: 'Gebet für Jung und Alt', tall: false },
-                { src: '/images/lounge.jpg', alt: 'Lounge Buffet', tall: false },
-                { src: '/images/bibel.jpg', alt: 'Bibel lesen mit markierten Versen', tall: false },
-                { src: '/images/achim-predigt-2.jpg', alt: 'Dr. Achim Struve predigt', tall: true },
-                { src: '/images/taufe-1.jpg', alt: 'Taufe', tall: false },
-                { src: '/images/young-people.jpg', alt: 'Junge Menschen sitzen und lachen', tall: false },
-                { src: '/images/young-people-cross.jpg', alt: 'Junge Menschen feiern vor dem Kreuz', tall: true },
-                { src: '/images/kinder-bibel.jpg', alt: 'Gebet für ein Kind', tall: false },
-                { src: '/images/gebet-gottesdienst-2.jpg', alt: 'Gebet im Gottesdienst', tall: false },
-                { src: '/images/lobpreisband.jpg', alt: 'Gebetsabend Lobpreisband', tall: false },
-              ].map(({ src, alt, tall }) => (
-                <div
-                  key={src}
-                  className={`relative overflow-hidden rounded-lg cursor-pointer group ${tall ? 'row-span-2' : ''}`}
-                  style={{ height: tall ? '19rem' : '9rem' }}
-                  onClick={() => openLightbox(src, alt)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Bild vergrößern: ${alt}`}
-                  onKeyDown={(e) => e.key === 'Enter' && openLightbox(src, alt)}
-                >
-                  <Image
-                    src={src}
-                    alt={alt}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                </div>
-              ))}
+              {/* tallSet: indices in galleryImages that get row-span-2 */}
+              {galleryImages.map(({ src, alt }, i) => {
+                const tall = [0, 3, 10, 13].includes(i)
+                return (
+                  <div
+                    key={src}
+                    className={`relative overflow-hidden rounded-lg cursor-pointer group ${tall ? 'row-span-2' : ''}`}
+                    style={{ height: tall ? '19rem' : '9rem' }}
+                    onClick={() => setGalleryIndex(i)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Bild vergrößern: ${alt}`}
+                    onKeyDown={(e) => e.key === 'Enter' && setGalleryIndex(i)}
+                  >
+                    <Image
+                      src={src}
+                      alt={alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  </div>
+                )
+              })}
             </div>
           </AnimatedChild>
 
@@ -605,8 +628,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Lightbox */}
-      <Lightbox src={lightboxImg?.src ?? null} alt={lightboxImg?.alt} onClose={closeLightbox} />
+      {/* Lightboxes */}
+      <Lightbox images={galleryImages} currentIndex={galleryIndex} onClose={closeGallery} onNavigate={setGalleryIndex} />
+      <Lightbox images={visionImages} currentIndex={visionIndex} onClose={closeVision} onNavigate={setVisionIndex} />
 
       {/* ─── FINAL CTA ─── */}
       <section className="relative z-[1] py-32 bg-[#0a0f1e] overflow-hidden">

@@ -97,16 +97,15 @@ export default function TeamPage() {
           <AnimatedChild className="mb-8">
             <div className="glass-card rounded-3xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group">
               {/* Full-width photo — face clearly visible, no text on top */}
-              <div className="relative h-[420px] w-full overflow-hidden">
+              <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/7', minHeight: '320px' }}>
                 <Image
                   src={team[0].photo}
                   alt={team[0].names}
                   fill
-                  className={`object-cover ${team[0].photoPosition} group-hover:scale-105 transition-transform duration-700`}
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   sizes="100vw"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d1526]/70" />
               </div>
               {/* Content completely below photo */}
               <div className="p-8 md:p-12">
@@ -126,12 +125,12 @@ export default function TeamPage() {
               <StaggerItem key={member.names}>
                 <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
                   {/* Photo — no overlay text at all */}
-                  <div className="relative h-96 overflow-hidden shrink-0">
+                  <div className="relative w-full overflow-hidden shrink-0" style={{ aspectRatio: '3/4', minHeight: '320px', maxHeight: '520px' }}>
                     <Image
                       src={member.photo}
                       alt={member.names}
                       fill
-                      className={`object-cover ${member.photoPosition} group-hover:scale-105 transition-transform duration-700`}
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
