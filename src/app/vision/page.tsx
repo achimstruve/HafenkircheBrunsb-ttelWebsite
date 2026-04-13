@@ -39,24 +39,45 @@ export default function VisionPage() {
       <section className="pt-32 pb-20 bg-[#0a0f1e] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(201,168,76,0.12),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
-          <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
-              Wer wir sind
-            </p>
-          </AnimatedChild>
-          <AnimatedChild delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95] max-w-3xl">
-              Unsere
-              <br />
-              <span className="gold-gradient-text">Vision.</span>
-            </h1>
-          </AnimatedChild>
-          <AnimatedChild delay={0.25}>
-            <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Jesu Herz für Brunsbüttel, Dithmarschen und den Norden Deutschlands zu leben,
-              das ist der Kern dessen, was uns antreibt.
-            </p>
-          </AnimatedChild>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text */}
+            <div>
+              <AnimatedChild>
+                <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+                  Wer wir sind
+                </p>
+              </AnimatedChild>
+              <AnimatedChild delay={0.1}>
+                <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95]">
+                  Unsere
+                  <br />
+                  <span className="gold-gradient-text">Vision.</span>
+                </h1>
+              </AnimatedChild>
+              <AnimatedChild delay={0.25}>
+                <p className="text-gray-300 text-xl leading-relaxed">
+                  Jesu Herz für Brunsbüttel, Dithmarschen und den Norden Deutschlands zu leben,
+                  das ist der Kern dessen, was uns antreibt.
+                </p>
+              </AnimatedChild>
+            </div>
+
+            {/* Vision image */}
+            <AnimatedChild delay={0.15} direction="left">
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative w-[380px] h-[380px] md:w-[500px] md:h-[500px] drop-shadow-[0_0_48px_rgba(201,168,76,0.1)]">
+                  <Image
+                    src="/images/vision-header.png"
+                    alt="Unsere Vision"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 380px, 500px"
+                    priority
+                  />
+                </div>
+              </div>
+            </AnimatedChild>
+          </div>
         </div>
       </section>
 

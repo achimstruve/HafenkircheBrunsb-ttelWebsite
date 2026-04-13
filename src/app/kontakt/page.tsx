@@ -193,14 +193,15 @@ export default function KontaktPage() {
                 </p>
                 <p className="text-gray-300 font-semibold mb-2">Dienstags · 19:00 Uhr</p>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Lerne uns online kennen, stelle Fragen und bete mit uns,
-                  ohne Verpflichtung, einfach zum Reinschnuppern.
+                  Einfach online reinschnuppern, Fragen stellen und beten, ohne Verpflichtung, einfach zum Reinschnuppern.
                 </p>
                 <a
-                  href="mailto:info@hafenkirche.com?subject=Mutmacher Zoom Zugangsdaten"
+                  href="https://us02web.zoom.us/j/86582901445?pwd=TC9JNnV1Y3hiVjQxU3YxSmthMko2QT09"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block mt-4 text-[#c9a84c] text-sm font-semibold hover:underline"
                 >
-                  Zugangsdaten anfragen →
+                  Meeting beitreten →
                 </a>
               </div>
             </AnimatedChild>
