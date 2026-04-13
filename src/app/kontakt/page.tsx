@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
-import { Mail, MapPin, Clock, Send, Check } from 'lucide-react'
+import { Mail, MapPin, Clock, Copy, Check } from 'lucide-react'
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -30,42 +29,15 @@ function YoutubeIcon({ className }: { className?: string }) {
   )
 }
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Adresse',
-    lines: ['Schleusenstraße 10', '25541 Brunsbüttel'],
-    color: 'from-[#c9a84c] to-[#e8c56d]',
-  },
-  {
-    icon: Mail,
-    title: 'E-Mail',
-    lines: ['info@hafenkirche.com'],
-    href: 'mailto:info@hafenkirche.com',
-    color: 'from-[#3060b0] to-[#4a80d0]',
-  },
-  {
-    icon: Clock,
-    title: 'Gottesdienst',
-    lines: ['Sonntags · 10:30 Uhr'],
-    color: 'from-[#20a060] to-[#30c080]',
-  },
-]
+const EMAIL = 'info@hafenkirche.com'
 
 export default function KontaktPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
+  const [copied, setCopied] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const mailto = `mailto:info@hafenkirche.com?subject=${encodeURIComponent(formData.subject || 'Kontaktanfrage')}&body=${encodeURIComponent(`Name: ${formData.name}\nE-Mail: ${formData.email}\n\n${formData.message}`)}`
-    window.location.href = mailto
-    setSubmitted(true)
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(EMAIL)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -88,7 +60,7 @@ export default function KontaktPage() {
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
             <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Fragen, Anliegen, oder einfach mal reinschnuppern — schreib uns oder
+              Fragen, Anliegen, oder einfach mal reinschnuppern: Schreib uns oder
               komm einfach sonntags um 10:30 Uhr vorbei.
             </p>
           </AnimatedChild>
@@ -98,207 +70,138 @@ export default function KontaktPage() {
       {/* Contact content */}
       <section className="py-24 bg-[#0d1526]">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact info */}
-            <div>
-              <AnimatedChild>
-                <h2 className="text-3xl font-black text-white mb-10">
-                  So erreichst du uns
-                </h2>
-              </AnimatedChild>
+          <div className="max-w-2xl mx-auto">
+            <AnimatedChild>
+              <h2 className="text-3xl font-black text-white mb-10">
+                So erreichst du uns
+              </h2>
+            </AnimatedChild>
 
-              <StaggerContainer className="space-y-4 mb-12">
-                {contactInfo.map((item) => (
-                  <StaggerItem key={item.title}>
-                    <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
-                      <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        <item.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">
-                          {item.title}
-                        </p>
-                        {item.lines.map((line, i) =>
-                          item.href ? (
-                            <a
-                              key={i}
-                              href={item.href}
-                              className="block text-white font-semibold hover:text-[#c9a84c] transition-colors"
-                            >
-                              {line}
-                            </a>
-                          ) : (
-                            <p key={i} className="text-white font-semibold">
-                              {line}
-                            </p>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-
-              {/* Social Media */}
-              <AnimatedChild delay={0.3}>
-                <div className="glass-card rounded-2xl p-8">
-                  <h3 className="text-white font-bold text-lg mb-6">
-                    Folge uns in den sozialen Medien
-                  </h3>
-                  <div className="flex gap-4">
-                    {[
-                      {
-                        Icon: FacebookIcon,
-                        label: 'Facebook',
-                        href: 'https://www.facebook.com/HafenkircheBrunsbuettel',
-                        color: 'hover:bg-[#1877F2]/20 hover:border-[#1877F2]/40 hover:text-[#1877F2]',
-                      },
-                      {
-                        Icon: InstagramIcon,
-                        label: 'Instagram',
-                        href: 'https://www.instagram.com/hafenkirchebrunsbuttel',
-                        color: 'hover:bg-[#E1306C]/20 hover:border-[#E1306C]/40 hover:text-[#E1306C]',
-                      },
-                      {
-                        Icon: YoutubeIcon,
-                        label: 'YouTube',
-                        href: 'https://www.youtube.com/@hafenkirchebrunsbuttel5266',
-                        color: 'hover:bg-[#FF0000]/20 hover:border-[#FF0000]/40 hover:text-[#FF0000]',
-                      },
-                    ].map((social) => (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 text-gray-400 text-sm font-medium transition-all duration-200 ${social.color}`}
-                        aria-label={social.label}
-                      >
-                        <social.Icon className="w-5 h-5" />
-                        <span className="hidden sm:inline">{social.label}</span>
-                      </a>
-                    ))}
+            {/* Info cards */}
+            <StaggerContainer className="space-y-4 mb-12">
+              {/* Address */}
+              <StaggerItem>
+                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Adresse</p>
+                    <p className="text-white font-semibold">Schleusenstraße 10</p>
+                    <p className="text-white font-semibold">25541 Brunsbüttel</p>
                   </div>
                 </div>
-              </AnimatedChild>
+              </StaggerItem>
 
-              {/* Mutmacher Zoom */}
-              <AnimatedChild delay={0.4}>
-                <div className="mt-6 p-6 rounded-2xl bg-gradient-to-br from-[#c9a84c]/10 to-transparent border border-[#c9a84c]/20">
-                  <p className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-2">
-                    Mutmacher Zoom
-                  </p>
-                  <p className="text-gray-300 font-semibold mb-2">Dienstags · 19:00 Uhr</p>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Lerne uns online kennen, stelle Fragen und bete mit uns —
-                    ohne Verpflichtung, einfach zum Reinschnuppern.
-                  </p>
-                  <a
-                    href="mailto:info@hafenkirche.com?subject=Mutmacher Zoom Zugangsdaten"
-                    className="inline-block mt-4 text-[#c9a84c] text-sm font-semibold hover:underline"
-                  >
-                    Zugangsdaten anfragen →
-                  </a>
+              {/* Email with copy button */}
+              <StaggerItem>
+                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3060b0] to-[#4a80d0] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">E-Mail</p>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <a
+                        href={`mailto:${EMAIL}`}
+                        className="text-white font-semibold hover:text-[#c9a84c] transition-colors"
+                      >
+                        {EMAIL}
+                      </a>
+                      <button
+                        onClick={copyEmail}
+                        className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold border transition-all duration-200 shrink-0"
+                        style={
+                          copied
+                            ? { color: '#4ade80', borderColor: 'rgba(74,222,128,0.4)', background: 'rgba(74,222,128,0.08)' }
+                            : { color: '#c9a84c', borderColor: 'rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.06)' }
+                        }
+                        aria-label="E-Mail-Adresse kopieren"
+                      >
+                        {copied
+                          ? <><Check className="w-3.5 h-3.5" /> Kopiert!</>
+                          : <><Copy className="w-3.5 h-3.5" /> Kopieren</>
+                        }
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </AnimatedChild>
-            </div>
+              </StaggerItem>
 
-            {/* Contact Form */}
-            <AnimatedChild delay={0.2} direction="left">
-              <div className="glass-card rounded-3xl p-8 md:p-10">
-                <h2 className="text-2xl font-black text-white mb-2">Schreib uns</h2>
-                <p className="text-gray-400 text-sm mb-8">
-                  Wir antworten so schnell wie möglich.
-                </p>
+              {/* Service time */}
+              <StaggerItem>
+                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#20a060] to-[#30c080] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Clock className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Gottesdienst</p>
+                    <p className="text-white font-semibold">Sonntags · 10:30 Uhr</p>
+                  </div>
+                </div>
+              </StaggerItem>
+            </StaggerContainer>
 
-                {submitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center py-16 text-center"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center mb-6 shadow-xl shadow-[#c9a84c]/30">
-                      <Check className="w-8 h-8 text-[#0a0f1e]" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Vielen Dank!</h3>
-                    <p className="text-gray-400">
-                      Dein E-Mail-Programm öffnet sich jetzt. Wir freuen uns auf deine Nachricht!
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">
-                          Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c]/50 focus:bg-[#c9a84c]/5 transition-all duration-200 text-sm"
-                          placeholder="Dein Name"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">
-                          E-Mail *
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c]/50 focus:bg-[#c9a84c]/5 transition-all duration-200 text-sm"
-                          placeholder="deine@email.de"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">
-                        Betreff
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c]/50 focus:bg-[#c9a84c]/5 transition-all duration-200 text-sm"
-                        placeholder="Worum geht es?"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">
-                        Nachricht *
-                      </label>
-                      <textarea
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c]/50 focus:bg-[#c9a84c]/5 transition-all duration-200 text-sm resize-none"
-                        placeholder="Was liegt dir auf dem Herzen?"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full gold-button flex items-center justify-center gap-2 text-base py-4"
+            {/* Social Media */}
+            <AnimatedChild delay={0.3}>
+              <div className="glass-card rounded-2xl p-8 mb-6">
+                <h3 className="text-white font-bold text-lg mb-6">
+                  Folge uns in den sozialen Medien
+                </h3>
+                <div className="flex gap-4">
+                  {[
+                    {
+                      Icon: FacebookIcon,
+                      label: 'Facebook',
+                      href: 'https://www.facebook.com/HafenkircheBrunsbuettel',
+                      color: 'hover:bg-[#1877F2]/20 hover:border-[#1877F2]/40 hover:text-[#1877F2]',
+                    },
+                    {
+                      Icon: InstagramIcon,
+                      label: 'Instagram',
+                      href: 'https://www.instagram.com/hafenkirchebrunsbuttel',
+                      color: 'hover:bg-[#E1306C]/20 hover:border-[#E1306C]/40 hover:text-[#E1306C]',
+                    },
+                    {
+                      Icon: YoutubeIcon,
+                      label: 'YouTube',
+                      href: 'https://www.youtube.com/@hafenkirchebrunsbuttel5266',
+                      color: 'hover:bg-[#FF0000]/20 hover:border-[#FF0000]/40 hover:text-[#FF0000]',
+                    },
+                  ].map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 text-gray-400 text-sm font-medium transition-all duration-200 ${social.color}`}
+                      aria-label={social.label}
                     >
-                      <Send className="w-4 h-4" />
-                      Nachricht senden
-                    </button>
+                      <social.Icon className="w-5 h-5" />
+                      <span className="hidden sm:inline">{social.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </AnimatedChild>
 
-                    <p className="text-gray-600 text-xs text-center">
-                      * Pflichtfelder. Deine Daten werden nur zur Beantwortung deiner Anfrage
-                      verwendet.
-                    </p>
-                  </form>
-                )}
+            {/* Mutmacher Zoom */}
+            <AnimatedChild delay={0.4}>
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-[#c9a84c]/10 to-transparent border border-[#c9a84c]/20">
+                <p className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-2">
+                  Mutmacher Zoom
+                </p>
+                <p className="text-gray-300 font-semibold mb-2">Dienstags · 19:00 Uhr</p>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Lerne uns online kennen, stelle Fragen und bete mit uns,
+                  ohne Verpflichtung, einfach zum Reinschnuppern.
+                </p>
+                <a
+                  href="mailto:info@hafenkirche.com?subject=Mutmacher Zoom Zugangsdaten"
+                  className="inline-block mt-4 text-[#c9a84c] text-sm font-semibold hover:underline"
+                >
+                  Zugangsdaten anfragen →
+                </a>
               </div>
             </AnimatedChild>
           </div>
@@ -310,7 +213,7 @@ export default function KontaktPage() {
         <AnimatedChild>
           <div className="w-full h-80 relative overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2376.8!2d9.1315!3d53.8983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b3f28d2e0da7b1%3A0x0!2sSchleusenstra%C3%9Fe+10%2C+25541+Bronsb%C3%BCttel!5e0!3m2!1sde!2sde!4v1"
+              src="https://maps.google.com/maps?q=Schleusenstra%C3%9Fe+10%2C+25541+Brunsbüttel&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}

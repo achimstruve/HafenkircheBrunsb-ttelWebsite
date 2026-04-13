@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
 
 export const metadata: Metadata = {
-  title: 'Werte — Hafenkirche Brunsbüttel',
+  title: 'Werte | Hafenkirche Brunsbüttel',
   description: 'Die 7 Werte, die das Leben der Hafenkirche Brunsbüttel prägen.',
 }
 
@@ -18,7 +18,7 @@ const values = [
     number: '02',
     icon: '❤️',
     title: 'Geliebt',
-    text: 'Wir sind von Gott, dem Vater, bedingungslos geliebt. Diese Liebe ist nicht verdient, sondern geschenkt — und sie verändert alles.',
+    text: 'Wir sind von Gott, dem Vater, bedingungslos geliebt. Diese Liebe ist nicht verdient, sondern geschenkt, und sie verändert alles.',
     color: 'from-[#e8455a] to-[#f07080]',
   },
   {
@@ -53,7 +53,7 @@ const values = [
     number: '07',
     icon: '🌊',
     title: 'Leben',
-    text: 'Wir lieben das Leben und sind füreinander da. In guten wie in schwierigen Zeiten — Gemeinschaft trägt.',
+    text: 'Wir lieben das Leben und sind füreinander da. In guten wie in schwierigen Zeiten: Gemeinschaft trägt.',
     color: 'from-[#0080c0] to-[#20a8e0]',
   },
 ]
@@ -79,7 +79,7 @@ export default function WertePage() {
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
             <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Diese Werte sind keine Regeln — sie sind das, was unser Leben und unsere
+              Diese Werte sind keine Regeln, sie sind das, was unser Leben und unsere
               Gemeinschaft von innen heraus prägt.
             </p>
           </AnimatedChild>
@@ -141,7 +141,7 @@ export default function WertePage() {
             <div className="max-w-3xl mx-auto">
               <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#c9a84c] to-transparent mx-auto mb-12" />
               <p className="text-3xl md:text-4xl text-gray-200 font-light italic leading-relaxed mb-12">
-                „Diese Werte sind nicht unser Ziel — sie sind unsere Antwort auf
+                „Diese Werte sind nicht unser Ziel, sie sind unsere Antwort auf
                 Gottes Liebe zu uns."
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

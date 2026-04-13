@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { AnimatedChild } from '@/components/AnimatedSection'
 
 export const metadata: Metadata = {
-  title: 'Impressum & Datenschutz — Hafenkirche Brunsbüttel',
+  title: 'Impressum & Datenschutz | Hafenkirche Brunsbüttel',
   description: 'Impressum und Datenschutzerklärung der Hafenkirche Brunsbüttel e.V.',
 }
 

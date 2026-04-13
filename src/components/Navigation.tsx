@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Anchor, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -45,10 +46,16 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center shadow-lg group-hover:shadow-[#c9a84c]/40 transition-shadow duration-300">
-                <Anchor className="w-5 h-5 text-[#0a0f1e]" />
+              <div className="relative w-10 h-10 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <Image
+                  src="/logo.png"
+                  alt="Hafenkirche Brunsbüttel"
+                  fill
+                  className="object-contain drop-shadow-[0_0_6px_rgba(201,168,76,0.4)]"
+                  priority
+                />
               </div>
-              <span className="text-xl font-bold text-white">
+              <span className="text-xl font-bold text-white hidden sm:block">
                 Hafen<span className="text-[#c9a84c]">kirche</span>
               </span>
             </Link>
@@ -115,8 +122,13 @@ export default function Navigation() {
             >
               <div className="flex items-center justify-between p-6 border-b border-[#c9a84c]/20">
                 <Link href="/" className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center">
-                    <Anchor className="w-4 h-4 text-[#0a0f1e]" />
+                  <div className="relative w-9 h-9 shrink-0">
+                    <Image
+                      src="/logo.png"
+                      alt="Hafenkirche Brunsbüttel"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   <span className="font-bold text-white">
                     Hafen<span className="text-[#c9a84c]">kirche</span>

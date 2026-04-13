@@ -1,9 +1,10 @@
 import { Metadata } from 'next'
-import { Anchor, Heart, Globe, Users } from 'lucide-react'
+import Image from 'next/image'
+import { Compass, Heart, Globe, Users } from 'lucide-react'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
 
 export const metadata: Metadata = {
-  title: 'Vision — Hafenkirche Brunsbüttel',
+  title: 'Vision | Hafenkirche Brunsbüttel',
   description:
     'Unsere Vision: Jesu Herz für Brunsbüttel, Dithmarschen und den Norden Deutschlands zu leben.',
 }
@@ -12,20 +13,20 @@ const pillars = [
   {
     icon: Heart,
     title: 'Beziehung zum Vater',
-    text: 'Unsere beschädigte Beziehung zu Gott kann durch Jesus Christus vollständig wiederhergestellt werden — ein Geschenk, das kein Geld der Welt kaufen kann.',
+    text: 'Unsere beschädigte Beziehung zu Gott kann durch Jesus Christus vollständig wiederhergestellt werden, ein Geschenk, das kein Geld der Welt kaufen kann.',
   },
   {
     icon: Globe,
     title: 'Einfluss in der Region',
-    text: 'Brunsbüttel an der Mündung des Nord-Ostsee-Kanals zur Elbe — eine bedeutende Stadt, in der Gottes Liebe sichtbar werden soll.',
+    text: 'Brunsbüttel an der Mündung des Nord-Ostsee-Kanals zur Elbe, eine bedeutende Stadt, in der Gottes Liebe sichtbar werden soll.',
   },
   {
     icon: Users,
     title: 'Gemeinschaft & Gesellschaft',
-    text: 'Wir engagieren uns gesellschaftlich und sind ein Segen für die Menschen in Stadt und Region — in Sport, Beruf, Schule und Familie.',
+    text: 'Wir engagieren uns gesellschaftlich und sind ein Segen für die Menschen in Stadt und Region: in Sport, Beruf, Schule und Familie.',
   },
   {
-    icon: Anchor,
+    icon: Compass,
     title: 'Lebendige Gemeinde',
     text: 'Die Gründung einer lebendigen Gemeinde in dieser bedeutenden Hafen- und Schleusenstadt ist ein großes Privileg und Auftrag.',
   },
@@ -52,7 +53,7 @@ export default function VisionPage() {
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
             <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Jesu Herz für Brunsbüttel, Dithmarschen und den Norden Deutschlands zu leben —
+              Jesu Herz für Brunsbüttel, Dithmarschen und den Norden Deutschlands zu leben,
               das ist der Kern dessen, was uns antreibt.
             </p>
           </AnimatedChild>
@@ -66,8 +67,13 @@ export default function VisionPage() {
             <AnimatedChild>
               <div className="glass-card rounded-3xl p-10 md:p-16 mb-16">
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center">
-                    <Anchor className="w-5 h-5 text-[#0a0f1e]" />
+                  <div className="relative w-10 h-10 shrink-0">
+                    <Image
+                      src="/logo-icon.png"
+                      alt="Hafenkirche Brunsbüttel"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   <div className="h-px flex-1 bg-gradient-to-r from-[#c9a84c]/40 to-transparent" />
                 </div>
@@ -132,7 +138,7 @@ export default function VisionPage() {
                 Unsere Grundlagen
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-white">
-                Worauf wir stehen
+                Was uns trägt
               </h2>
             </div>
           </AnimatedChild>
@@ -163,7 +169,7 @@ export default function VisionPage() {
               Teil dieser Vision werden?
             </h2>
             <p className="text-gray-400 text-xl max-w-xl mx-auto mb-10">
-              Wir freuen uns, dich kennenzulernen — komm einfach zu einem unserer
+              Wir freuen uns, dich kennenzulernen. Komm einfach zu einem unserer
               Gottesdienste oder schreib uns.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,57 +1,58 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
 import { Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Team — Hafenkirche Brunsbüttel',
-  description: 'Das Team der Hafenkirche Brunsbüttel — Menschen mit Herz für die Region.',
+  title: 'Team | Hafenkirche Brunsbüttel',
+  description: 'Das Team der Hafenkirche Brunsbüttel: Menschen mit Herz für die Region.',
 }
 
 const team = [
   {
-    names: 'Achim & Nadine',
-    role: 'Gemeindeleitung',
-    initials: 'AN',
+    names: 'Dr. Achim & Nadine Struve',
+    role: 'Gemeindeleiter · Kinderdienstleitung',
+    photo: '/images/team/achim-nadine.jpg',
+    photoPosition: 'object-top',
     description:
-      'Achim ist Ingenieur, Nadine ist Lehrerin. Gemeinsam sind sie Eltern von Elisa und Nathanael. Sie leiten die Hafenkirche zusammen mit dem Ältestenteam und tragen das Herz für Brunsbüttel.',
+      'Achim ist promovierter Ingenieur, Nadine ist Lehrerin und leitet den Kinderdienst. Gemeinsam sind sie Eltern von Elisa und Nathanael. Sie leiten die Hafenkirche zusammen mit dem Ältestenteam und tragen das Herz für Brunsbüttel.',
     highlight: 'Gemeindegründer',
-    color: 'from-[#c9a84c] to-[#e8c56d]',
   },
   {
-    names: 'Elke & Jens',
-    role: 'Ältestenteam',
-    initials: 'EJ',
+    names: 'Elke & Jens Struve',
+    role: 'Diakonin & Ältester · Alphakurse',
+    photo: '/images/team/elke-jens.jpg',
+    photoPosition: 'object-top',
     description:
-      'Eltern von 4 Kindern, mittlerweile stolze Großeltern von 7 Enkeln. Ehemalige Landwirte. Erfahrene Gemeindegründer und Mitgründer der evangelischen Freikirche Wilstermarsch.',
+      'Eltern von 4 Kindern, mittlerweile stolze Großeltern von 7 Enkeln. Ehemalige Landwirte. Erfahrene Gemeindegründer, Mitgründer der evangelischen Freikirche Wilstermarsch, und Leiter der Alphakurse.',
     highlight: 'Erfahrene Gemeindegründer',
-    color: 'from-[#3060b0] to-[#4a80d0]',
   },
   {
     names: 'Thomas & Tatjana',
-    role: 'Evangelisation',
-    initials: 'TT',
+    role: 'Ältester Evangelisation · Kinderdienst',
+    photo: '/images/team/thomas-tatjana.jpg',
+    photoPosition: 'object-top',
     description:
-      'Ihr Herz brennt dafür, Menschen mit der frohen Botschaft des Evangeliums zu erreichen. Mit Leidenschaft und Authentizität bezeugen sie Gottes Liebe im Alltag.',
+      'Thomas ist Ältester mit Herz für Evangelisation. Tatjana ist leidenschaftliche Kinderdienstmitarbeiterin. Gemeinsam bezeugen sie Gottes Liebe im Alltag mit Leidenschaft und Authentizität.',
     highlight: 'Leidenschaft fürs Evangelium',
-    color: 'from-[#20a060] to-[#30c080]',
   },
   {
     names: 'Monika',
-    role: 'Dienst & Gemeinschaft',
-    initials: 'MO',
+    role: 'Diakonin · Küchenteamleitung',
+    photo: '/images/team/monika.jpg',
+    photoPosition: 'object-top',
     description:
-      'Monika ist leidenschaftlich darum bemüht, Gottes Liebe mit anderen zu teilen. Mit ihrem warmen Herz und ihrer offenen Art ist sie ein wichtiger Teil der Gemeinschaft.',
+      'Monika ist Diakonin und leitet das Küchenteam. Mit ihrem warmen Herz und ihrer offenen Art sorgt sie für Gemeinschaft beim Kaffee und Kuchen und ist ein wichtiger Teil der Gemeinde.',
     highlight: 'Herzlich & einladend',
-    color: 'from-[#e8455a] to-[#f07080]',
   },
   {
-    names: 'Iris',
-    role: 'Kinderarbeit',
-    initials: 'IR',
+    names: 'Iris Moesker',
+    role: 'Welcomedienst Leitung',
+    photo: '/images/team/iris.jpg',
+    photoPosition: 'object-top',
     description:
-      'Mutter von zwei Kindern, erfahren in der Kinderarbeit. Von der Freikirche Wilstermarsch ausgesandt, bringt sie großes Herz und Erfahrung für die Jüngsten der Gemeinde mit.',
-    highlight: 'Kinder & Familie',
-    color: 'from-[#8040c0] to-[#a060e0]',
+      'Iris leitet den Welcomedienst und sorgt dafür, dass sich jeder Besucher willkommen fühlt. Sie bringt ein großes Herz für Menschen und viel Erfahrung aus der Gemeindearbeit mit.',
+    highlight: 'Willkommen & Gastfreundschaft',
   },
 ]
 
@@ -61,6 +62,11 @@ export default function TeamPage() {
       {/* Hero */}
       <section className="pt-32 pb-20 bg-[#0a0f1e] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(201,168,76,0.1),transparent)] pointer-events-none" />
+        {/* Hero background photo */}
+        <div className="absolute inset-0">
+          <Image src="/images/young-people.jpg" alt="" fill className="object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1e]/60 to-[#0a0f1e]" />
+        </div>
         <div className="container-max relative z-10">
           <AnimatedChild>
             <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
@@ -76,7 +82,7 @@ export default function TeamPage() {
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
             <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Wir sind keine perfekten Menschen — aber wir sind Menschen, die von einem
+              Wir sind keine perfekten Menschen, aber wir sind Menschen, die von einem
               guten Gott geliebt werden und diese Liebe weitergeben möchten.
             </p>
           </AnimatedChild>
@@ -86,49 +92,58 @@ export default function TeamPage() {
       {/* Team Cards */}
       <section className="py-24 bg-[#0d1526]">
         <div className="container-max">
-          {/* Featured pair - full width */}
+
+          {/* Featured — Achim & Nadine, full width */}
           <AnimatedChild className="mb-8">
-            <div className="glass-card rounded-3xl p-10 md:p-14 hover:border-[#c9a84c]/40 transition-all duration-300 group">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
-                <div className="flex flex-col items-center md:items-start gap-4">
-                  <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${team[0].color} flex items-center justify-center shadow-2xl shadow-[#c9a84c]/20 group-hover:scale-105 transition-transform duration-300`}>
-                    <span className="text-3xl font-black text-[#0a0f1e]">{team[0].initials}</span>
-                  </div>
-                  <div className="text-center md:text-left">
-                    <h2 className="text-2xl font-black text-white">{team[0].names}</h2>
-                    <p className="text-[#c9a84c] font-semibold text-sm mt-1">{team[0].role}</p>
-                    <span className="inline-block mt-2 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 text-[#c9a84c] text-xs font-medium">
-                      {team[0].highlight}
-                    </span>
-                  </div>
-                </div>
-                <div className="md:col-span-2">
-                  <p className="text-gray-300 text-lg leading-relaxed">{team[0].description}</p>
-                </div>
+            <div className="glass-card rounded-3xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group">
+              {/* Full-width photo — face clearly visible, no text on top */}
+              <div className="relative h-[420px] w-full overflow-hidden">
+                <Image
+                  src={team[0].photo}
+                  alt={team[0].names}
+                  fill
+                  className={`object-cover ${team[0].photoPosition} group-hover:scale-105 transition-transform duration-700`}
+                  sizes="100vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d1526]/70" />
+              </div>
+              {/* Content completely below photo */}
+              <div className="p-8 md:p-12">
+                <span className="inline-block mb-4 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 text-[#c9a84c] text-xs font-semibold uppercase tracking-wider">
+                  {team[0].highlight}
+                </span>
+                <h2 className="text-2xl md:text-3xl font-black text-white mb-1">{team[0].names}</h2>
+                <p className="text-[#c9a84c] font-semibold text-sm mb-5">{team[0].role}</p>
+                <p className="text-gray-300 text-lg leading-relaxed max-w-3xl">{team[0].description}</p>
               </div>
             </div>
           </AnimatedChild>
 
-          {/* Rest of team */}
+          {/* Rest of team — 2-column grid, photo fully above text */}
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {team.slice(1).map((member) => (
               <StaggerItem key={member.names}>
-                <div className="glass-card rounded-2xl p-8 hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 h-full">
-                  <div className="flex items-start gap-5 mb-6">
-                    <div
-                      className={`w-14 h-14 rounded-xl bg-gradient-to-br ${member.color} flex items-center justify-center shadow-lg shrink-0 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <span className="text-lg font-black text-white">{member.initials}</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white">{member.names}</h3>
-                      <p className="text-[#c9a84c] text-sm font-medium mt-0.5">{member.role}</p>
-                    </div>
+                <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
+                  {/* Photo — no overlay text at all */}
+                  <div className="relative h-96 overflow-hidden shrink-0">
+                    <Image
+                      src={member.photo}
+                      alt={member.names}
+                      fill
+                      className={`object-cover ${member.photoPosition} group-hover:scale-105 transition-transform duration-700`}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
-                  <p className="text-gray-400 leading-relaxed mb-5">{member.description}</p>
-                  <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs">
-                    {member.highlight}
-                  </span>
+                  {/* Text fully below photo */}
+                  <div className="p-7 flex flex-col flex-1">
+                    <h3 className="text-xl font-bold text-white">{member.names}</h3>
+                    <p className="text-[#c9a84c] text-sm font-semibold mt-1 mb-4">{member.role}</p>
+                    <p className="text-gray-400 leading-relaxed flex-1">{member.description}</p>
+                    <span className="inline-block mt-5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs w-fit">
+                      {member.highlight}
+                    </span>
+                  </div>
                 </div>
               </StaggerItem>
             ))}
@@ -136,7 +151,23 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Join the team teaser */}
+      {/* Full-width photo break */}
+      <div className="relative h-64 overflow-hidden">
+        <Image
+          src="/images/young-people-cross.jpg"
+          alt="Hafenkirche Gemeinschaft"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0a0f1e]/50" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="text-white text-2xl md:text-3xl font-black italic text-center px-4">
+            „Menschen, die Gottes Liebe weitergeben."
+          </p>
+        </div>
+      </div>
+
+      {/* Join the team */}
       <section className="py-24 bg-[#060c18]">
         <div className="container-max">
           <div className="max-w-3xl mx-auto text-center">
@@ -149,7 +180,7 @@ export default function TeamPage() {
               </h2>
               <p className="text-gray-400 text-xl leading-relaxed mb-10">
                 Wir sind immer offen für Menschen, die mitgestalten möchten.
-                Egal ob du schon lange Christ bist oder gerade erst anfängst —
+                Egal ob du schon lange Christ bist oder gerade erst anfängst:
                 bei uns gibt es Platz für dich.
               </p>
               <a href="/kontakt" className="gold-button text-lg">

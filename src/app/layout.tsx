@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Hafenkirche Brunsbüttel — Freiheit Leben',
+  title: 'Hafenkirche Brunsbüttel | Freiheit Leben',
   description:
     'Die Hafenkirche Brunsbüttel ist eine lebendige christliche Gemeinde in Dithmarschen. Wir glauben an Gottes Liebe, Leben in Freiheit und Gemeinschaft.',
   keywords: [
@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     'Gottesdienst',
     'Freiheit Leben',
   ],
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     title: 'Hafenkirche Brunsbüttel',
     description: 'Lebendige Kirche · Freiheit Leben',

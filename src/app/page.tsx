@@ -1,10 +1,11 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useRef } from 'react'
+import Image from 'next/image'
+import { useRef, useState, useCallback } from 'react'
 import {
-  Anchor,
+
   Calendar,
   Clock,
   ChevronDown,
@@ -16,6 +17,8 @@ import {
   Mail,
 } from 'lucide-react'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
+import ParticleBackground from '@/components/ParticleBackground'
+import Lightbox from '@/components/Lightbox'
 
 const events = [
   {
@@ -25,6 +28,7 @@ const events = [
     icon: Star,
     description: 'Gemeinsam feiern, anbeten und Gottes Wort hören.',
     color: 'from-[#c9a84c] to-[#e8c56d]',
+    photo: '/images/achim-predigt.jpg',
   },
   {
     title: 'Power Gebet',
@@ -33,14 +37,16 @@ const events = [
     icon: Heart,
     description: 'Im Gebet füreinander eintreten und Gott begegnen.',
     color: 'from-[#3060b0] to-[#4a80d0]',
+    photo: '/images/lobpreisband.jpg',
   },
   {
     title: 'Mutmacher Zoom',
     day: 'Dienstag',
     time: '19:00 Uhr',
     icon: Users,
-    description: 'Online dabei sein — Fragen stellen, beten, uns kennenlernen.',
+    description: 'Online dabei sein: Fragen stellen, beten, uns kennenlernen.',
     color: 'from-[#254a8a] to-[#3060b0]',
+    photo: null,
   },
 ]
 
@@ -69,6 +75,10 @@ const valuesPreview = [
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null)
+  const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null)
+  const openLightbox = useCallback((src: string, alt: string) => setLightboxImg({ src, alt }), [])
+  const closeLightbox = useCallback(() => setLightboxImg(null), [])
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -78,16 +88,29 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Fixed full-viewport particle background — sits behind all content */}
+      <ParticleBackground />
+
       {/* ─── HERO ─── */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0f1e]"
+        className="relative z-[1] min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0f1e]"
       >
         {/* Animated background layers */}
         <motion.div
           style={{ y: heroY }}
           className="absolute inset-0 pointer-events-none"
         >
+          {/* Church building photo — very subtle */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/church-building.jpg"
+              alt=""
+              fill
+              className="object-cover opacity-25"
+              priority
+            />
+          </div>
           {/* Radial gradient glow */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(201,168,76,0.15),transparent)]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_80%_80%,rgba(37,74,138,0.2),transparent)]" />
@@ -128,15 +151,21 @@ export default function HomePage() {
           style={{ opacity: heroOpacity }}
           className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
-          {/* Anchor icon */}
+          {/* Logo Icon */}
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
             className="flex justify-center mb-8"
           >
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center shadow-2xl shadow-[#c9a84c]/30">
-              <Anchor className="w-10 h-10 text-[#0a0f1e]" strokeWidth={2} />
+            <div className="relative w-28 h-28 drop-shadow-[0_0_24px_rgba(201,168,76,0.5)]">
+              <Image
+                src="/logo-icon.png"
+                alt="Hafenkirche Brunsbüttel"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </motion.div>
 
@@ -169,7 +198,7 @@ export default function HomePage() {
             transition={{ delay: 0.7, duration: 0.7 }}
             className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
           >
-            Eine Gemeinde für Brunsbüttel, Dithmarschen und den Norden — verwurzelt
+            Eine Gemeinde für Brunsbüttel, Dithmarschen und den Norden, verwurzelt
             in Gottes Liebe, ausgerichtet auf die Menschen dieser Region.
           </motion.p>
 
@@ -218,7 +247,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── EVENTS ─── */}
-      <section className="py-24 bg-[#0d1526]">
+      <section className="relative z-[1] py-24 bg-[#0d1526]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-16">
@@ -229,7 +258,7 @@ export default function HomePage() {
                 Wann wir uns treffen
               </h2>
               <p className="text-gray-400 text-lg max-w-xl mx-auto">
-                Komm einfach vorbei — wir freuen uns auf dich!
+                Komm einfach vorbei, wir freuen uns auf dich!
               </p>
             </div>
           </AnimatedChild>
@@ -237,22 +266,36 @@ export default function HomePage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {events.map((event) => (
               <StaggerItem key={event.title}>
-                <div className="glass-card rounded-2xl p-8 hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1">
-                  <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${event.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <event.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                  <p className="text-gray-400 text-sm mb-6 leading-relaxed">{event.description}</p>
-                  <div className="flex items-center gap-4 pt-5 border-t border-white/5">
-                    <div className="flex items-center gap-1.5 text-[#c9a84c] text-sm font-medium">
-                      <Calendar className="w-4 h-4" />
-                      {event.day}
+                <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
+                  {event.photo ? (
+                    <div className="relative h-56 overflow-hidden shrink-0">
+                      <Image
+                        src={event.photo}
+                        alt={event.title}
+                        fill
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1526]/25 to-transparent" />
                     </div>
-                    <div className="flex items-center gap-1.5 text-gray-400 text-sm">
-                      <Clock className="w-4 h-4" />
-                      {event.time}
+                  ) : null}
+                  <div className="p-8 flex flex-col flex-1">
+                    <div
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${event.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <event.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
+                    <p className="text-gray-400 text-sm mb-6 leading-relaxed flex-1">{event.description}</p>
+                    <div className="flex items-center gap-4 pt-5 border-t border-white/5">
+                      <div className="flex items-center gap-1.5 text-[#c9a84c] text-sm font-medium">
+                        <Calendar className="w-4 h-4" />
+                        {event.day}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-gray-400 text-sm">
+                        <Clock className="w-4 h-4" />
+                        {event.time}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -266,7 +309,7 @@ export default function HomePage() {
                 <Users className="w-4 h-4 text-[#c9a84c]" />
                 <p className="text-gray-300 text-sm">
                   <span className="text-[#c9a84c] font-semibold">Mutmacher Zoom</span>
-                  {' '}— online reinschnuppern, Fragen stellen, beten. Dienstags 19 Uhr.
+                  {' '}online reinschnuppern, Fragen stellen, beten. Dienstags 19 Uhr.
                 </p>
               </div>
             </div>
@@ -275,45 +318,53 @@ export default function HomePage() {
       </section>
 
       {/* ─── VISION TEASER ─── */}
-      <section className="py-32 bg-[#0a0f1e] relative overflow-hidden">
+      <section className="relative z-[1] py-24 bg-[#0a0f1e] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(201,168,76,0.07),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <AnimatedChild>
-              <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#c9a84c] to-transparent mx-auto mb-10" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+            <AnimatedChild direction="right">
+              <div>
+                <div className="w-16 h-1 bg-gradient-to-r from-[#c9a84c] to-transparent mb-8" />
+                <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-6">
+                  Unsere Vision
+                </p>
+                <blockquote className="text-2xl md:text-3xl text-gray-200 leading-relaxed font-light italic mb-8">
+                  „Unser Herz ist es, Jesu Herz für Brunsbüttel, Dithmarschen und den Norden
+                  Deutschlands zu leben."
+                </blockquote>
+                <p className="text-gray-400 text-lg leading-relaxed mb-10">
+                  Wir glauben, dass die Liebe Gottes das Leben von Menschen verändern kann,
+                  hier in der Hafenstadt an der Elbe, mitten im Alltag.
+                </p>
+                <Link
+                  href="/vision"
+                  className="inline-flex items-center gap-2 text-[#c9a84c] font-semibold hover:gap-4 transition-all duration-300 text-lg"
+                >
+                  Mehr über unsere Vision
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
             </AnimatedChild>
-            <AnimatedChild delay={0.1}>
-              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-6">
-                Unsere Vision
-              </p>
-            </AnimatedChild>
-            <AnimatedChild delay={0.2}>
-              <blockquote className="text-2xl md:text-3xl text-gray-200 leading-relaxed font-light italic mb-10">
-                „Unser Herz ist es, Jesu Herz für Brunsbüttel, Dithmarschen und den Norden
-                Deutschlands zu leben."
-              </blockquote>
-            </AnimatedChild>
-            <AnimatedChild delay={0.35}>
-              <p className="text-gray-400 text-lg leading-relaxed mb-12">
-                Wir glauben, dass die Liebe Gottes das Leben von Menschen verändern kann —
-                hier in der Hafenstadt an der Elbe, mitten im Alltag.
-              </p>
-            </AnimatedChild>
-            <AnimatedChild delay={0.5}>
-              <Link
-                href="/vision"
-                className="inline-flex items-center gap-2 text-[#c9a84c] font-semibold hover:gap-4 transition-all duration-300 text-lg"
-              >
-                Mehr über unsere Vision
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+            <AnimatedChild direction="left" delay={0.2}>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { src: '/images/kreuz-gebet.jpg', alt: 'Gebet' },
+                  { src: '/images/taufe-freude.jpg', alt: 'Taufe' },
+                  { src: '/images/gebet-gottesdienst.jpg', alt: 'Gottesdienst' },
+                  { src: '/images/lobpreisband-singt.jpg', alt: 'Lobpreis' },
+                ].map(({ src, alt }) => (
+                  <div key={src} className="relative h-36 rounded-xl overflow-hidden">
+                    <Image src={src} alt={alt} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="25vw" />
+                  </div>
+                ))}
+              </div>
             </AnimatedChild>
           </div>
         </div>
       </section>
 
       {/* ─── VALUES PREVIEW ─── */}
-      <section className="py-24 bg-[#060c18]">
+      <section className="relative z-[1] py-24 bg-[#060c18]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-16">
@@ -353,8 +404,87 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── PHOTO GALLERY: Gemeindeleben ─── */}
+      <section className="relative z-[1] py-24 bg-[#0a0f1e]">
+        <div className="container-max">
+          <AnimatedChild>
+            <div className="text-center mb-12">
+              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-4">Einblicke</p>
+              <h2 className="text-4xl md:text-5xl font-black text-white">Unser Gemeindeleben</h2>
+            </div>
+          </AnimatedChild>
+          <AnimatedChild delay={0.1}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {[
+                { src: '/images/young-ladies-church.jpg', alt: 'Junge Frauen vor der Kirche', tall: true },
+                { src: '/images/lounge-kaffee.jpg', alt: 'Kaffee & Gemeinschaft', tall: false },
+                { src: '/images/kindergottesdienst.jpg', alt: 'Kindergottesdienst', tall: false },
+                { src: '/images/jesus-gang.jpg', alt: 'Junge Menschen', tall: true },
+                { src: '/images/wacken-gebet.jpg', alt: 'Wackenmission — Bibeln verteilen', tall: false },
+                { src: '/images/hochzeit.jpg', alt: 'Hochzeit', tall: false },
+                { src: '/images/worship-gitarrist.jpg', alt: 'Worship', tall: false },
+                { src: '/images/gebet-vorne.jpg', alt: 'Gebet für Jung und Alt', tall: false },
+                { src: '/images/lounge.jpg', alt: 'Lounge Buffet', tall: false },
+                { src: '/images/bibel.jpg', alt: 'Bibel lesen mit markierten Versen', tall: false },
+                { src: '/images/achim-predigt-2.jpg', alt: 'Dr. Achim Struve predigt', tall: true },
+                { src: '/images/taufe-1.jpg', alt: 'Taufe', tall: false },
+                { src: '/images/young-people.jpg', alt: 'Junge Menschen sitzen und lachen', tall: false },
+                { src: '/images/young-people-cross.jpg', alt: 'Junge Menschen feiern vor dem Kreuz', tall: true },
+                { src: '/images/kinder-bibel.jpg', alt: 'Gebet für ein Kind', tall: false },
+                { src: '/images/gebet-gottesdienst-2.jpg', alt: 'Gebet im Gottesdienst', tall: false },
+                { src: '/images/lobpreisband.jpg', alt: 'Gebetsabend Lobpreisband', tall: false },
+              ].map(({ src, alt, tall }) => (
+                <div
+                  key={src}
+                  className={`relative overflow-hidden rounded-lg cursor-pointer group ${tall ? 'row-span-2' : ''}`}
+                  style={{ height: tall ? '19rem' : '9rem' }}
+                  onClick={() => openLightbox(src, alt)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Bild vergrößern: ${alt}`}
+                  onKeyDown={(e) => e.key === 'Enter' && openLightbox(src, alt)}
+                >
+                  <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
+              ))}
+            </div>
+          </AnimatedChild>
+
+          {/* Video clips */}
+          <AnimatedChild delay={0.2}>
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { src: '/videos/jesus-starb-fuer.mp4', label: '„Jesus starb für…"' },
+                { src: '/videos/licht-kette.mp4', label: 'Das Licht Jesu weitergeben' },
+              ].map(({ src, label }) => (
+                <div key={src} className="relative rounded-xl overflow-hidden bg-[#0d1526] border border-white/8">
+                  <video
+                    src={src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    className="w-full max-h-64 object-cover"
+                    aria-label={label}
+                  />
+                  <p className="px-4 py-2 text-gray-400 text-xs font-medium">{label}</p>
+                </div>
+              ))}
+            </div>
+          </AnimatedChild>
+        </div>
+      </section>
+
       {/* ─── TEAM TEASER ─── */}
-      <section className="py-24 bg-[#0a0f1e]">
+      <section className="relative z-[1] py-24 bg-[#0a0f1e]">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedChild direction="right">
@@ -368,7 +498,7 @@ export default function HomePage() {
                   <span className="gold-gradient-text">echtem Herz.</span>
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-10">
-                  Familien, Handwerker, Lehrer, Rentner — wir kommen aus ganz verschiedenen
+                  Familien, Handwerker, Lehrer, Rentner: Wir kommen aus ganz verschiedenen
                   Lebenswelten. Was uns verbindet, ist die Liebe zu Gott und zu den Menschen
                   in dieser Region.
                 </p>
@@ -382,10 +512,10 @@ export default function HomePage() {
             <AnimatedChild direction="left" delay={0.2}>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { name: 'Achim & Nadine', role: 'Gemeindeleitung' },
-                  { name: 'Elke & Jens', role: 'Ältestenteam' },
-                  { name: 'Thomas & Tatjana', role: 'Evangelisation' },
-                  { name: 'Iris & Monika', role: 'Dienst & Kinder' },
+                  { name: 'Achim & Nadine', role: 'Gemeindeleitung', photo: '/images/team/achim-nadine.jpg' },
+                  { name: 'Elke & Jens', role: 'Ältestenteam', photo: '/images/team/elke-jens.jpg' },
+                  { name: 'Thomas & Tatjana', role: 'Evangelisation', photo: '/images/team/thomas-tatjana.jpg' },
+                  { name: 'Iris & Monika', role: 'Dienst & Kinder', photo: '/images/team/iris.jpg' },
                 ].map((person, i) => (
                   <motion.div
                     key={person.name}
@@ -393,15 +523,22 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
-                    className="glass-card rounded-xl p-5 hover:border-[#c9a84c]/40 transition-all duration-300"
+                    className="glass-card rounded-xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c9a84c]/30 to-[#c9a84c]/10 flex items-center justify-center mb-3 border border-[#c9a84c]/30">
-                      <span className="text-[#c9a84c] text-sm font-bold">
-                        {person.name.charAt(0)}
-                      </span>
+                    <div className="relative h-40 overflow-hidden">
+                      <Image
+                        src={person.photo}
+                        alt={person.name}
+                        fill
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        sizes="200px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1526]/60 to-transparent" />
                     </div>
-                    <p className="text-white font-semibold text-sm">{person.name}</p>
-                    <p className="text-gray-500 text-xs mt-1">{person.role}</p>
+                    <div className="p-3">
+                      <p className="text-white font-semibold text-sm">{person.name}</p>
+                      <p className="text-gray-500 text-xs mt-0.5">{person.role}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -411,7 +548,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── MAP & LOCATION ─── */}
-      <section className="py-24 bg-[#0d1526]">
+      <section className="relative z-[1] py-24 bg-[#0d1526]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-12">
@@ -422,7 +559,7 @@ export default function HomePage() {
                 Komm vorbei
               </h2>
               <p className="text-gray-400 text-lg max-w-xl mx-auto">
-                Du findest uns in Brunsbüttel — mitten in der Stadt, nah an den Menschen.
+                Du findest uns in Brunsbüttel, mitten in der Stadt, nah an den Menschen.
               </p>
             </div>
           </AnimatedChild>
@@ -430,7 +567,7 @@ export default function HomePage() {
           <AnimatedChild delay={0.2}>
             <div className="rounded-2xl overflow-hidden border border-[#c9a84c]/20 shadow-2xl shadow-black/40">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2376.8!2d9.1315!3d53.8983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b3f28d2e0da7b1%3A0x0!2sSchleusenstra%C3%9Fe+10%2C+25541+Bronsb%C3%BCttel!5e0!3m2!1sde!2sde!4v1"
+                src="https://maps.google.com/maps?q=Schleusenstra%C3%9Fe+10%2C+25541+Brunsbüttel&output=embed"
                 width="100%"
                 height="400"
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
@@ -468,13 +605,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Lightbox */}
+      <Lightbox src={lightboxImg?.src ?? null} alt={lightboxImg?.alt} onClose={closeLightbox} />
+
       {/* ─── FINAL CTA ─── */}
-      <section className="py-32 bg-[#0a0f1e] relative overflow-hidden">
+      <section className="relative z-[1] py-32 bg-[#0a0f1e] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(201,168,76,0.08),transparent)] pointer-events-none" />
         <div className="container-max relative z-10 text-center">
           <AnimatedChild>
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 border border-[#c9a84c]/30 flex items-center justify-center mx-auto mb-8">
-              <Anchor className="w-8 h-8 text-[#c9a84c]" />
+            <div className="relative w-16 h-16 mx-auto mb-8 drop-shadow-[0_0_12px_rgba(201,168,76,0.4)]">
+              <Image src="/logo-icon.png" alt="Hafenkirche Brunsbüttel" fill className="object-contain" />
             </div>
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
@@ -486,8 +626,8 @@ export default function HomePage() {
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-              Egal wer du bist, wo du herkommst oder was dich beschäftigt —
-              bei uns gibt es Platz für dich.
+              Egal wer du bist, wo du herkommst oder was dich beschäftigt:
+              Bei uns gibt es Platz für dich.
             </p>
           </AnimatedChild>
           <AnimatedChild delay={0.4}>

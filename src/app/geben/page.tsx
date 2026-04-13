@@ -3,7 +3,7 @@ import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/Anima
 import { CreditCard, Mail, Heart, Shield, Copy } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Geben — Hafenkirche Brunsbüttel',
+  title: 'Geben | Hafenkirche Brunsbüttel',
   description:
     'Unterstütze die Arbeit der Hafenkirche Brunsbüttel mit einer Spende. Spenden sind steuerlich absetzbar.',
 }
@@ -163,7 +163,7 @@ export default function GebenPage() {
                 Geben aus Freude
               </h2>
               <p className="text-gray-300 text-xl leading-relaxed mb-8">
-                Wir glauben an freiwilig und fröhliches Geben — nicht aus Pflicht, sondern
+                Wir glauben an freiwiliges und fröhliches Geben, nicht aus Pflicht, sondern
                 aus der Dankbarkeit heraus, was Gott uns geschenkt hat.
               </p>
               <p className="text-gray-400 text-lg leading-relaxed">
