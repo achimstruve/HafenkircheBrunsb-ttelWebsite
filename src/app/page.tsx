@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { useRef, useState, useCallback } from 'react'
 import {
 
-  Calendar,
   Clock,
   ChevronDown,
   Heart,
@@ -64,7 +63,7 @@ const events = [
     icon: Heart,
     description: 'Im Gebet füreinander eintreten und Gott begegnen.',
     color: 'from-[#3060b0] to-[#4a80d0]',
-    photo: '/images/gebet-vorne.jpg',
+    photo: '/images/gebet-im-gottesdienst.jpg',
     cta: null as null | { label: string; href: string },
   },
   {
@@ -75,7 +74,7 @@ const events = [
     description: 'Einfach online reinschnuppern, Fragen stellen, beten — ohne Verpflichtung.',
     color: 'from-[#254a8a] to-[#3060b0]',
     photo: '/images/young-ladies-church.jpg',
-    cta: { label: 'Zoom-Link anfragen', href: 'mailto:info@hafenkirche.com?subject=Mutmacher Zoom Zugangsdaten' },
+    cta: { label: 'Meeting beitreten', href: 'https://us02web.zoom.us/j/86582901445?pwd=TC9JNnV1Y3hiVjQxU3YxSmthMko2QT09' },
   },
 ]
 
@@ -134,7 +133,7 @@ export default function HomePage() {
               src="/images/hero-worship.png"
               alt=""
               fill
-              className="object-cover object-center opacity-30"
+              className="object-cover object-center opacity-10"
               priority
             />
           </div>
@@ -225,8 +224,9 @@ export default function HomePage() {
             transition={{ delay: 0.7, duration: 0.7 }}
             className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
           >
-            Eine Gemeinde für Brunsbüttel, Dithmarschen und den Norden, verwurzelt
-            in Gottes Liebe, ausgerichtet auf die Menschen dieser Region.
+            Eine lebendige Gemeinde für Brunsbüttel, Dithmarschen und den Norden,
+            verwurzelt in Gottes Liebe, fokussiert auf Jesus und ausgerichtet auf
+            die Menschen dieser Region.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -316,20 +316,27 @@ export default function HomePage() {
                     {event.cta && (
                       <a
                         href={event.cta.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 mb-4 text-sm font-semibold text-[#c9a84c] hover:underline"
                       >
                         {event.cta.label} →
                       </a>
                     )}
                     <div className="flex items-center gap-4 pt-5 border-t border-white/5">
-                      <div className="flex items-center gap-1.5 text-[#c9a84c] text-sm font-medium">
-                        <Calendar className="w-4 h-4" />
-                        {event.day}
-                      </div>
                       <div className="flex items-center gap-1.5 text-gray-400 text-sm">
                         <Clock className="w-4 h-4" />
                         {event.time}
                       </div>
+                      {!event.cta && (
+                        <a
+                          href="#standort"
+                          className="ml-auto flex items-center gap-1 text-xs text-gray-500 hover:text-[#c9a84c] transition-colors duration-200"
+                        >
+                          <MapPin className="w-3.5 h-3.5" />
+                          Standort
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -337,17 +344,7 @@ export default function HomePage() {
             ))}
           </StaggerContainer>
 
-          <AnimatedChild delay={0.4}>
-            <div className="mt-10 text-center">
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20">
-                <Users className="w-4 h-4 text-[#c9a84c]" />
-                <p className="text-gray-300 text-sm">
-                  <span className="text-[#c9a84c] font-semibold">Mutmacher Zoom</span>
-                  {' '}online reinschnuppern, Fragen stellen, beten. Dienstags 19 Uhr.
-                </p>
-              </div>
-            </div>
-          </AnimatedChild>
+
         </div>
       </section>
 
@@ -515,70 +512,31 @@ export default function HomePage() {
 
       {/* ─── TEAM TEASER ─── */}
       <section className="relative z-[1] py-24 bg-[#0a0f1e]">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <AnimatedChild direction="right">
-              <div>
-                <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
-                  Wer wir sind
-                </p>
-                <h2 className="text-4xl md:text-5xl font-black text-white mb-7 leading-tight">
-                  Menschen mit
-                  <br />
-                  <span className="gold-gradient-text">echtem Herz.</span>
-                </h2>
-                <p className="text-gray-400 text-lg leading-relaxed mb-10">
-                  Familien, Handwerker, Lehrer, Rentner: Wir kommen aus ganz verschiedenen
-                  Lebenswelten. Was uns verbindet, ist die Liebe zu Gott und zu den Menschen
-                  in dieser Region.
-                </p>
-                <Link href="/team" className="gold-button inline-flex items-center gap-2">
-                  Das Team kennenlernen
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </AnimatedChild>
-
-            <AnimatedChild direction="left" delay={0.2}>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: 'Achim & Nadine', role: 'Gemeindeleitung', photo: '/images/team/achim-nadine.jpg' },
-                  { name: 'Elke & Jens', role: 'Ältestenteam', photo: '/images/team/elke-jens.jpg' },
-                  { name: 'Thomas & Tatjana', role: 'Evangelisation', photo: '/images/team/thomas-tatjana.jpg' },
-                  { name: 'Iris & Monika', role: 'Dienst & Kinder', photo: '/images/team/iris.jpg' },
-                ].map((person, i) => (
-                  <motion.div
-                    key={person.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
-                    className="glass-card rounded-xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group"
-                  >
-                    <div className="relative h-40 overflow-hidden">
-                      <Image
-                        src={person.photo}
-                        alt={person.name}
-                        fill
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                        sizes="200px"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1526]/60 to-transparent" />
-                    </div>
-                    <div className="p-3">
-                      <p className="text-white font-semibold text-sm">{person.name}</p>
-                      <p className="text-gray-500 text-xs mt-0.5">{person.role}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedChild>
-          </div>
+        <div className="container-max max-w-2xl mx-auto text-center">
+          <AnimatedChild>
+            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+              Wer wir sind
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-7 leading-tight">
+              Menschen mit
+              <br />
+              <span className="gold-gradient-text">echtem Herz.</span>
+            </h2>
+            <p className="text-gray-400 text-lg leading-relaxed mb-10">
+              Familien, Handwerker, Lehrer, Rentner: Wir kommen aus ganz verschiedenen
+              Lebenswelten. Was uns verbindet, ist die Liebe zu Gott und zu den Menschen
+              in dieser Region.
+            </p>
+            <Link href="/team" className="gold-button inline-flex items-center gap-2">
+              Das Team kennenlernen
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </AnimatedChild>
         </div>
       </section>
 
       {/* ─── MAP & LOCATION ─── */}
-      <section className="relative z-[1] py-24 bg-[#0d1526]">
+      <section id="standort" className="relative z-[1] py-24 bg-[#0d1526]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-12">
@@ -595,7 +553,7 @@ export default function HomePage() {
           </AnimatedChild>
 
           <AnimatedChild delay={0.15}>
-            <div className="relative h-56 rounded-2xl overflow-hidden border border-[#c9a84c]/20 shadow-xl shadow-black/40 mb-4">
+            <div className="relative h-96 rounded-2xl overflow-hidden border border-[#c9a84c]/20 shadow-xl shadow-black/40 mb-4">
               <Image
                 src="/images/church-building.jpg"
                 alt="Hafenkirche Brunsbüttel Gebäude"

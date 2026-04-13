@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
-import { CreditCard, Mail, Heart, Shield, Copy } from 'lucide-react'
+import { Mail, Heart, Shield, Copy } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Geben | Hafenkirche Brunsbüttel',
@@ -30,24 +31,45 @@ export default function GebenPage() {
       <section className="pt-32 pb-20 bg-[#0a0f1e] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(201,168,76,0.1),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
-          <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
-              Unterstütze uns
-            </p>
-          </AnimatedChild>
-          <AnimatedChild delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95]">
-              Geben &
-              <br />
-              <span className="gold-gradient-text">Fördern.</span>
-            </h1>
-          </AnimatedChild>
-          <AnimatedChild delay={0.25}>
-            <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Jede Spende ermöglicht es uns, die frohe Botschaft weiterzutragen und
-              Menschen in Brunsbüttel und der Region zu erreichen.
-            </p>
-          </AnimatedChild>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text */}
+            <div>
+              <AnimatedChild>
+                <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+                  Unterstütze uns
+                </p>
+              </AnimatedChild>
+              <AnimatedChild delay={0.1}>
+                <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95]">
+                  Geben &
+                  <br />
+                  <span className="gold-gradient-text">Fördern.</span>
+                </h1>
+              </AnimatedChild>
+              <AnimatedChild delay={0.25}>
+                <p className="text-gray-300 text-xl leading-relaxed">
+                  Jede Spende ermöglicht es uns, die frohe Botschaft weiterzutragen und
+                  Menschen in Brunsbüttel und der Region zu erreichen.
+                </p>
+              </AnimatedChild>
+            </div>
+
+            {/* Plant image */}
+            <AnimatedChild delay={0.15} direction="left">
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative w-[400px] h-[400px] md:w-[540px] md:h-[540px] drop-shadow-[0_0_48px_rgba(201,168,76,0.12)]">
+                  <Image
+                    src="/images/pflanze-geben.png"
+                    alt="Wachstum durch Geben"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 400px, 540px"
+                    priority
+                  />
+                </div>
+              </div>
+            </AnimatedChild>
+          </div>
         </div>
       </section>
 
@@ -156,9 +178,6 @@ export default function GebenPage() {
         <div className="container-max">
           <div className="max-w-3xl mx-auto text-center">
             <AnimatedChild>
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 border border-[#c9a84c]/30 flex items-center justify-center mx-auto mb-8">
-                <CreditCard className="w-7 h-7 text-[#c9a84c]" />
-              </div>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-8">
                 Geben aus Freude
               </h2>

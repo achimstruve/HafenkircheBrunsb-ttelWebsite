@@ -60,6 +60,39 @@ export default function VisionPage() {
         </div>
       </section>
 
+      {/* Harbour quote */}
+      <section className="py-20 bg-[#0d1526] border-t border-white/5">
+        <div className="container-max">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedChild>
+              <div className="relative pl-8 md:pl-12 border-l-4 border-[#c9a84c]">
+                {/* Anchor icon */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="relative w-9 h-9 shrink-0 opacity-80">
+                    <Image src="/logo-icon.png" alt="" fill className="object-contain" />
+                  </div>
+                  <span className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase">
+                    Was unser Name bedeutet
+                  </span>
+                </div>
+                {/* Decorative opening quote */}
+                <span
+                  className="absolute -top-4 left-6 md:left-10 text-[7rem] leading-none text-[#c9a84c]/15 font-serif select-none pointer-events-none"
+                  aria-hidden="true"
+                >
+                  „
+                </span>
+                <blockquote className="text-gray-200 text-lg md:text-2xl leading-[1.85] font-light italic relative z-10">
+                  Wir sind als Kirche ein Hafen, in dem jeder anlegen darf, um seine alte Ladung
+                  an Jesus abzugeben, um dann mit Gottes leichter Ladung — der Liebe, Befreiung,
+                  Heilung und Befähigung — ins Leben zu segeln und anderen davon weiterzugeben.
+                </blockquote>
+              </div>
+            </AnimatedChild>
+          </div>
+        </div>
+      </section>
+
       {/* Main Vision Text */}
       <section className="py-24 bg-[#0d1526]">
         <div className="container-max">

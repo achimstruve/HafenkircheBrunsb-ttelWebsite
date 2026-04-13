@@ -12,29 +12,29 @@ export const metadata: Metadata = {
 const team = [
   {
     names: 'Dr. Achim & Nadine Struve',
-    role: 'Gemeindeleiter · Kinderdienstleitung',
+    role: 'Gemeindeleiter & Ältester · Kinderdienstleitung',
     photo: '/images/team/achim-nadine.jpg',
     photoPosition: 'object-top',
     description:
-      'Achim ist promovierter Ingenieur, Nadine ist Lehrerin und leitet den Kinderdienst. Gemeinsam sind sie Eltern von Elisa und Nathanael. Sie leiten die Hafenkirche zusammen mit dem Ältestenteam und tragen das Herz für Brunsbüttel.',
+      <>Achim ist promovierter Ingenieur (Dr.-Ing.) und hat auch Theologie studiert. Heute arbeitet er selbstständig als <a href="https://agenovation.ai/de/" target="_blank" rel="noopener noreferrer" className="text-[#c9a84c] hover:underline">KI-Berater</a> für größere Unternehmen und leitet die Hafenkirche als Gemeindeleiter und Ältester. Nadine unterrichtet an der Boy-Lornsen-Grundschule in Brunsbüttel und leitet liebevoll den Kinderdienst. Gemeinsam sind sie Eltern von Elisa und Nathanael und führen die Gemeinde zusammen mit dem Ältesten- und Gründerteam.</>,
     highlight: 'Gemeindegründer',
   },
   {
     names: 'Elke & Jens Struve',
-    role: 'Diakonin & Ältester · Alphakurse',
+    role: 'Ältester & Diakonin · Alphakurse · Lobpreis',
     photo: '/images/team/elke-jens.jpg',
     photoPosition: 'object-top',
     description:
-      'Eltern von 4 Kindern, mittlerweile stolze Großeltern von 7 Enkeln. Ehemalige Landwirte. Erfahrene Gemeindegründer, Mitgründer der evangelischen Freikirche Wilstermarsch, und Leiter der Alphakurse.',
+      'Jens arbeitet als LKW-Fahrer und ist Ältester der Gemeinde. Elke ist als Haushaltshilfe für bedürftige junge Menschen tätig, bringt ihr Herz für Menschen als Diakonin in die Gemeindearbeit ein und leitet den Lobpreis der Hafenkirche. Als Eltern von 4 Kindern und stolze Großeltern von 8 Enkeln wissen sie, was Familie bedeutet. Sie sind erfahrene Gemeindegründer und lieben es die frohe Botschaft von Jesus durch Glaubensgrund- und Jüngerschaftskurse weiterzugeben.',
     highlight: 'Erfahrene Gemeindegründer',
   },
   {
-    names: 'Thomas & Tatjana',
-    role: 'Ältester Evangelisation · Kinderdienst',
+    names: 'Thomas & Tatjana Mutspill',
+    role: 'Ältester & Evangelisation · Kernteam',
     photo: '/images/team/thomas-tatjana.jpg',
     photoPosition: 'object-top',
     description:
-      'Thomas ist Ältester mit Herz für Evangelisation. Tatjana ist leidenschaftliche Kinderdienstmitarbeiterin. Gemeinsam bezeugen sie Gottes Liebe im Alltag mit Leidenschaft und Authentizität.',
+      'Thomas arbeitet als Systemadministrator im Amt Eiderstedt und ist Ältester der Hafenkirche. Mit viel Leidenschaft leitet er den Evangelisationsdienst und trägt das Herz dafür, dass Menschen in der Region von Jesus hören. Tatjana ist als Teil des Kernteams mit Begeisterung dabei und bringt ihre Gaben und ihr Engagement in die Gemeinschaft ein. Gemeinsam leben sie Gottes Liebe mit Authentizität und Freude.',
     highlight: 'Leidenschaft fürs Evangelium',
   },
   {
@@ -43,7 +43,7 @@ const team = [
     photo: '/images/team/monika.jpg',
     photoPosition: 'object-top',
     description:
-      'Monika ist Diakonin und leitet das Küchenteam. Mit ihrem warmen Herz und ihrer offenen Art sorgt sie für Gemeinschaft beim Kaffee und Kuchen und ist ein wichtiger Teil der Gemeinde.',
+      'Monika ist Diakonin und leitet das Küchenteam der Hafenkirche. Mit ihrem warmen Herz, ihrer offenen Art und ihrem Talent für Gastfreundschaft sorgt sie dafür, dass sich nach dem Gottesdienst bei Kaffee und Kuchen echte Gemeinschaft entfaltet. Sie ist ein unverzichtbarer Teil der Gemeinde.',
     highlight: 'Herzlich & einladend',
   },
   {
@@ -91,64 +91,34 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Team Cards */}
+      {/* Team Cards — uniform 3-column grid */}
       <section className="py-24 bg-[#0d1526]">
         <div className="container-max">
-
-          {/* Featured — Achim & Nadine, full width */}
-          <AnimatedChild className="mb-8">
-            <div className="glass-card rounded-3xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group">
-              {/* Full-width photo — face clearly visible, no text on top */}
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/7', minHeight: '320px' }}>
-                <Image
-                  src={team[0].photo}
-                  alt={team[0].names}
-                  fill
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
-              {/* Content completely below photo */}
-              <div className="p-8 md:p-12">
-                <span className="inline-block mb-4 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 text-[#c9a84c] text-xs font-semibold uppercase tracking-wider">
-                  {team[0].highlight}
-                </span>
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-1">{team[0].names}</h2>
-                <p className="text-[#c9a84c] font-semibold text-sm mb-5">{team[0].role}</p>
-                <p className="text-gray-300 text-lg leading-relaxed max-w-3xl">{team[0].description}</p>
-              </div>
-            </div>
-          </AnimatedChild>
-
-          {/* Rest of team — 2-column grid, photo fully above text */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {team.slice(1).map((member) => (
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {team.map((member, i) => (
               <StaggerItem key={member.names}>
                 <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
-                  {/* Photo — no overlay text at all */}
+                  {/* Photo */}
                   <div
                     className="relative w-full overflow-hidden shrink-0"
                     style={'containerStyle' in member && member.containerStyle
                       ? member.containerStyle
-                      : { aspectRatio: '3/4', minHeight: '320px', maxHeight: '520px' }}
+                      : { aspectRatio: '3/4', minHeight: '280px', maxHeight: '480px' }}
                   >
                     <Image
                       src={member.photo}
                       alt={member.names}
                       fill
                       className={`object-cover ${member.photoPosition} group-hover:scale-105 transition-transform duration-700`}
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={i < 3}
                     />
                   </div>
-                  {/* Text fully below photo */}
-                  <div className="p-7 flex flex-col flex-1">
-                    <h3 className="text-xl font-bold text-white">{member.names}</h3>
-                    <p className="text-[#c9a84c] text-sm font-semibold mt-1 mb-4">{member.role}</p>
-                    <p className="text-gray-400 leading-relaxed flex-1">{member.description}</p>
-                    <span className="inline-block mt-5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs w-fit">
-                      {member.highlight}
-                    </span>
+                  {/* Text */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold text-white">{member.names}</h3>
+                    <p className="text-[#c9a84c] text-xs font-semibold mt-1 mb-3">{member.role}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed flex-1">{member.description}</p>
                   </div>
                 </div>
               </StaggerItem>
