@@ -40,31 +40,31 @@ export default function GlaubePage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-[#0a0f1e] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(201,168,76,0.1),transparent)] pointer-events-none" />
+      <section className="pt-32 pb-20 bg-[#dfe8f5] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(235,213,50,0.1),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
           <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+            <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
               Was wir glauben
             </p>
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95]">
+            <h1 className="text-5xl md:text-7xl font-black text-[#0E395B] mb-8 leading-[0.95]">
               Unser
               <br />
               <span className="gold-gradient-text">Glaube.</span>
             </h1>
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
-            <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Drei Grundlagen, auf denen alles aufbaut, was wir glauben und leben.
+            <p className="text-[#345278] text-xl max-w-2xl leading-relaxed">
+              Als evangelische Freikirche stehen wir auf der Bibel und auf den zentralen Wahrheiten des christlichen Glaubens.
             </p>
           </AnimatedChild>
         </div>
       </section>
 
       {/* Belief Cards */}
-      <section className="py-24 bg-[#0d1526]">
+      <section className="py-24 bg-[#d4e0f0]">
         <div className="container-max">
           <StaggerContainer className="space-y-12">
             {beliefs.map((belief, i) => {
@@ -75,7 +75,7 @@ export default function GlaubePage() {
                   <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${!isEven ? 'lg:[direction:rtl]' : ''}`}>
                     {/* Image */}
                     <div className={`flex items-center justify-center ${!isEven ? 'lg:[direction:ltr]' : ''}`}>
-                      <div className="relative w-full max-w-sm aspect-square drop-shadow-[0_0_40px_rgba(201,168,76,0.08)]">
+                      <div className="relative w-full max-w-sm aspect-square drop-shadow-[0_0_40px_rgba(235,213,50,0.08)]">
                         <Image
                           src={belief.image}
                           alt={belief.imageAlt}
@@ -89,17 +89,17 @@ export default function GlaubePage() {
 
                     {/* Text */}
                     <div className={`flex flex-col gap-6 ${!isEven ? 'lg:[direction:ltr]' : ''}`}>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 border border-[#c9a84c]/30 flex items-center justify-center">
-                        <Icon className="w-7 h-7 text-[#c9a84c]" />
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EBD532]/20 to-[#EBD532]/5 border border-[#EBD532]/30 flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-[#c45aa0]" />
                       </div>
                       <div>
-                        <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.25em] uppercase mb-2">
+                        <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.25em] uppercase mb-2">
                           {belief.subtitle}
                         </p>
-                        <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+                        <h2 className="text-3xl md:text-4xl font-black text-[#0E395B] mb-4">
                           {belief.title}
                         </h2>
-                        <p className="text-gray-300 text-lg leading-relaxed">
+                        <p className="text-[#345278] text-lg leading-relaxed">
                           {belief.text}
                         </p>
                       </div>
@@ -112,23 +112,41 @@ export default function GlaubePage() {
         </div>
       </section>
 
+      {/* Apostolisches Glaubensbekenntnis */}
+      <section className="py-24 bg-[#dfe8f5]">
+        <div className="container-max">
+          <div className="max-w-4xl mx-auto">
+            <AnimatedChild>
+              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4 text-center">
+                Apostolisches Glaubensbekenntnis
+              </p>
+              <div className="glass-card rounded-2xl p-8 md:p-10">
+                <p className="text-[#0E395B] leading-[1.9] text-base md:text-lg">
+                  Ich glaube an Gott, den Vater, den Allmächtigen, den Schöpfer des Himmels und der Erde. Und an Jesus Christus, seinen eingeborenen Sohn, unsern Herrn, empfangen durch den Heiligen Geist, geboren von der Jungfrau Maria, gelitten unter Pontius Pilatus, gekreuzigt, gestorben und begraben, hinabgestiegen in das Reich des Todes, am dritten Tage auferstanden von den Toten, aufgefahren in den Himmel; er sitzt zur Rechten Gottes, des allmächtigen Vaters; von dort wird er kommen, zu richten die Lebenden und die Toten. Ich glaube an den Heiligen Geist, die heilige christliche Kirche, Gemeinschaft der Heiligen, Vergebung der Sünden, Auferstehung der Toten und das ewige Leben. Amen.
+                </p>
+              </div>
+            </AnimatedChild>
+          </div>
+        </div>
+      </section>
+
       {/* Scripture */}
-      <section className="py-20 bg-[#060c18]">
+      <section className="py-20 bg-[#c8d7ea]">
         <div className="container-max">
           <div className="max-w-3xl mx-auto text-center">
             <AnimatedChild>
               <div className="relative inline-block">
                 <span
-                  className="absolute -top-6 left-0 text-[6rem] leading-none text-[#c9a84c]/10 font-serif select-none pointer-events-none"
+                  className="absolute -top-6 left-0 text-[6rem] leading-none text-[#c45aa0]/10 font-serif select-none pointer-events-none"
                   aria-hidden="true"
                 >
                   „
                 </span>
-                <blockquote className="text-gray-200 text-xl md:text-2xl leading-[1.8] font-light italic relative z-10 px-8">
+                <blockquote className="text-[#0E395B] text-xl md:text-2xl leading-[1.8] font-light italic relative z-10 px-8">
                   Denn so hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab, damit alle, die an ihn glauben, nicht verloren gehen, sondern ewiges Leben haben.
                 </blockquote>
               </div>
-              <p className="text-[#c9a84c] text-sm font-semibold mt-6 tracking-wider">
+              <p className="text-[#c45aa0] text-sm font-semibold mt-6 tracking-wider">
                 Johannes 3,16
               </p>
             </AnimatedChild>
@@ -137,14 +155,14 @@ export default function GlaubePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-[#0a0f1e]">
+      <section className="py-24 bg-[#dfe8f5]">
         <div className="container-max">
           <div className="max-w-2xl mx-auto text-center">
             <AnimatedChild>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
                 Fragen zum Glauben?
               </h2>
-              <p className="text-gray-400 text-xl leading-relaxed mb-10">
+              <p className="text-[#3f5f86] text-xl leading-relaxed mb-10">
                 Wir reden gerne mit dir. Komm einfach zu einem Gottesdienst oder schreib uns.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

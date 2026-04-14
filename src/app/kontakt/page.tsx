@@ -43,23 +43,23 @@ export default function KontaktPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-[#0a0f1e] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(201,168,76,0.1),transparent)] pointer-events-none" />
+      <section className="pt-32 pb-20 bg-[#dfe8f5] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(235,213,50,0.1),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
           <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+            <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
               Wir freuen uns auf dich
             </p>
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95]">
+            <h1 className="text-5xl md:text-7xl font-black text-[#0E395B] mb-8 leading-[0.95]">
               Meld dich
               <br />
               <span className="gold-gradient-text">bei uns.</span>
             </h1>
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
-            <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
+            <p className="text-[#345278] text-xl max-w-2xl leading-relaxed">
               Fragen, Anliegen, oder einfach mal reinschnuppern: Schreib uns oder
               komm einfach sonntags um 10:30 Uhr vorbei.
             </p>
@@ -68,11 +68,11 @@ export default function KontaktPage() {
       </section>
 
       {/* Contact content */}
-      <section className="py-24 bg-[#0d1526]">
+      <section className="py-24 bg-[#d4e0f0]">
         <div className="container-max">
           <div className="max-w-2xl mx-auto">
             <AnimatedChild>
-              <h2 className="text-3xl font-black text-white mb-10">
+              <h2 className="text-3xl font-black text-[#0E395B] mb-10">
                 So erreichst du uns
               </h2>
             </AnimatedChild>
@@ -81,30 +81,30 @@ export default function KontaktPage() {
             <StaggerContainer className="space-y-4 mb-12">
               {/* Address */}
               <StaggerItem>
-                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c] to-[#e8c56d] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-6 h-6 text-white" />
+                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#EBD532]/40 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#EBD532] to-[#f4e06b] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <MapPin className="w-6 h-6 text-[#0E395B]" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Adresse</p>
-                    <p className="text-white font-semibold">Schleusenstraße 10</p>
-                    <p className="text-white font-semibold">25541 Brunsbüttel</p>
+                    <p className="text-[#5e76a0] text-xs font-semibold uppercase tracking-wider mb-1">Adresse</p>
+                    <p className="text-[#0E395B] font-semibold">Schleusenstraße 10</p>
+                    <p className="text-[#0E395B] font-semibold">25541 Brunsbüttel</p>
                   </div>
                 </div>
               </StaggerItem>
 
               {/* Email with copy button */}
               <StaggerItem>
-                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
+                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#EBD532]/40 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3060b0] to-[#4a80d0] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Mail className="w-6 h-6 text-white" />
+                    <Mail className="w-6 h-6 text-[#0E395B]" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">E-Mail</p>
+                    <p className="text-[#5e76a0] text-xs font-semibold uppercase tracking-wider mb-1">E-Mail</p>
                     <div className="flex items-center gap-3 flex-wrap">
                       <a
                         href={`mailto:${EMAIL}`}
-                        className="text-white font-semibold hover:text-[#c9a84c] transition-colors"
+                        className="text-[#0E395B] font-semibold hover:text-[#c45aa0] transition-colors"
                       >
                         {EMAIL}
                       </a>
@@ -114,7 +114,7 @@ export default function KontaktPage() {
                         style={
                           copied
                             ? { color: '#4ade80', borderColor: 'rgba(74,222,128,0.4)', background: 'rgba(74,222,128,0.08)' }
-                            : { color: '#c9a84c', borderColor: 'rgba(201,168,76,0.3)', background: 'rgba(201,168,76,0.06)' }
+                            : { color: '#EBD532', borderColor: 'rgba(235,213,50,0.3)', background: 'rgba(235,213,50,0.06)' }
                         }
                         aria-label="E-Mail-Adresse kopieren"
                       >
@@ -130,13 +130,13 @@ export default function KontaktPage() {
 
               {/* Service time */}
               <StaggerItem>
-                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#c9a84c]/40 transition-all duration-300 group">
+                <div className="flex gap-5 p-6 rounded-2xl glass-card hover:border-[#EBD532]/40 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#20a060] to-[#30c080] flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Clock className="w-6 h-6 text-white" />
+                    <Clock className="w-6 h-6 text-[#0E395B]" />
                   </div>
                   <div>
-                    <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Gottesdienst</p>
-                    <p className="text-white font-semibold">Sonntags · 10:30 Uhr</p>
+                    <p className="text-[#5e76a0] text-xs font-semibold uppercase tracking-wider mb-1">Gottesdienst</p>
+                    <p className="text-[#0E395B] font-semibold">Sonntags · 10:30 Uhr</p>
                   </div>
                 </div>
               </StaggerItem>
@@ -145,7 +145,7 @@ export default function KontaktPage() {
             {/* Social Media */}
             <AnimatedChild delay={0.3}>
               <div className="glass-card rounded-2xl p-8 mb-6">
-                <h3 className="text-white font-bold text-lg mb-6">
+                <h3 className="text-[#0E395B] font-bold text-lg mb-6">
                   Folge uns in den sozialen Medien
                 </h3>
                 <div className="flex gap-4">
@@ -174,7 +174,7 @@ export default function KontaktPage() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 text-gray-400 text-sm font-medium transition-all duration-200 ${social.color}`}
+                      className={`flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 text-[#3f5f86] text-sm font-medium transition-all duration-200 ${social.color}`}
                       aria-label={social.label}
                     >
                       <social.Icon className="w-5 h-5" />
@@ -187,19 +187,19 @@ export default function KontaktPage() {
 
             {/* Mutmacher Zoom */}
             <AnimatedChild delay={0.4}>
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-[#c9a84c]/10 to-transparent border border-[#c9a84c]/20">
-                <p className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-2">
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-[#EBD532]/10 to-transparent border border-[#EBD532]/20">
+                <p className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-2">
                   Mutmacher Zoom
                 </p>
-                <p className="text-gray-300 font-semibold mb-2">Dienstags · 19:00 Uhr</p>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-[#345278] font-semibold mb-2">Dienstags · 19:00 Uhr</p>
+                <p className="text-[#3f5f86] text-sm leading-relaxed">
                   Einfach online reinschnuppern, Fragen stellen und beten, ohne Verpflichtung, einfach zum Reinschnuppern.
                 </p>
                 <a
                   href="https://us02web.zoom.us/j/86582901445?pwd=TC9JNnV1Y3hiVjQxU3YxSmthMko2QT09"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-4 text-[#c9a84c] text-sm font-semibold hover:underline"
+                  className="inline-block mt-4 text-[#c45aa0] text-sm font-semibold hover:underline"
                 >
                   Meeting beitreten →
                 </a>
@@ -210,7 +210,7 @@ export default function KontaktPage() {
       </section>
 
       {/* Map */}
-      <section className="bg-[#060c18]">
+      <section className="bg-[#c8d7ea]">
         <AnimatedChild>
           <div className="w-full h-80 relative overflow-hidden">
             <iframe

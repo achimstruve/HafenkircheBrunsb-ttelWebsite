@@ -16,7 +16,7 @@ const team = [
     photo: '/images/team/achim-nadine.jpg',
     photoPosition: 'object-top',
     description:
-      <>Achim ist promovierter Ingenieur (Dr.-Ing.) und hat auch Theologie studiert. Heute arbeitet er selbstständig als <a href="https://agenovation.ai/de/" target="_blank" rel="noopener noreferrer" className="text-[#c9a84c] hover:underline">KI-Berater</a> für größere Unternehmen und leitet die Hafenkirche als Gemeindeleiter und Ältester. Nadine unterrichtet an der Boy-Lornsen-Grundschule in Brunsbüttel und leitet liebevoll den Kinderdienst. Gemeinsam sind sie Eltern von Elisa und Nathanael und führen die Gemeinde zusammen mit dem Ältesten- und Gründerteam.</>,
+      <>Achim ist promovierter Ingenieur (Dr.-Ing.) und hat auch Theologie studiert. Heute arbeitet er selbstständig als <a href="https://agenovation.ai/de/" target="_blank" rel="noopener noreferrer" className="text-[#c45aa0] hover:underline">KI-Berater</a> für größere Unternehmen und leitet die Hafenkirche als Gemeindeleiter und Ältester. Nadine unterrichtet an der Boy-Lornsen-Grundschule in Brunsbüttel und leitet liebevoll den Kinderdienst. Gemeinsam sind sie Eltern von Elisa und Nathanael und führen die Gemeinde zusammen mit dem Ältesten- und Gründerteam.</>,
     highlight: 'Gemeindegründer',
   },
   {
@@ -25,7 +25,7 @@ const team = [
     photo: '/images/team/elke-jens.jpg',
     photoPosition: 'object-top',
     description:
-      'Jens arbeitet als LKW-Fahrer und ist Ältester der Gemeinde. Elke ist als Haushaltshilfe für bedürftige junge Menschen tätig, bringt ihr Herz für Menschen als Diakonin in die Gemeindearbeit ein und leitet den Lobpreis der Hafenkirche. Als Eltern von 4 Kindern und stolze Großeltern von 8 Enkeln wissen sie, was Familie bedeutet. Sie sind erfahrene Gemeindegründer und lieben es die frohe Botschaft von Jesus durch Glaubensgrund- und Jüngerschaftskurse weiterzugeben.',
+      'Jens arbeitet als LKW-Fahrer und ist Ältester der Gemeinde. Elke ist Hauswirtschafterin in einer sozialen Einrichtung, bringt ihr Herz für Menschen als Diakonin in die Gemeindearbeit ein und leitet den Lobpreis der Hafenkirche. Als Eltern von 4 Kindern und stolze Großeltern von 9 Enkeln wissen sie, was Familie bedeutet. Sie sind erfahrene Gemeindegründer und lieben es die frohe Botschaft von Jesus durch Glaubensgrund- und Jüngerschaftskurse weiterzugeben. Beide haben mehrere Semester Theologie an der BFP-Bibelschule Beröa studiert.',
     highlight: 'Erfahrene Gemeindegründer',
   },
   {
@@ -34,7 +34,7 @@ const team = [
     photo: '/images/team/thomas-tatjana.jpg',
     photoPosition: 'object-top',
     description:
-      'Thomas arbeitet als Systemadministrator im Amt Eiderstedt und ist Ältester der Hafenkirche. Mit viel Leidenschaft leitet er den Evangelisationsdienst und trägt das Herz dafür, dass Menschen in der Region von Jesus hören. Tatjana ist als Teil des Kernteams mit Begeisterung dabei und bringt ihre Gaben und ihr Engagement in die Gemeinschaft ein. Gemeinsam leben sie Gottes Liebe mit Authentizität und Freude.',
+      'Thomas arbeitet als Systemadministrator im Amt Eiderstedt und ist Ältester der Hafenkirche. Mit viel Leidenschaft leitet er den Evangelisationsdienst und trägt das Herz dafür, dass Menschen in der Region von Jesus hören. Thomas hat zudem eine Ausbildung als Seelsorger. Tatjana ist als Teil des Kernteams mit Begeisterung dabei und bringt ihre Gaben und ihr Engagement in die Gemeinschaft ein. Gemeinsam leben sie Gottes Liebe mit Authentizität und Freude.',
     highlight: 'Leidenschaft fürs Evangelium',
   },
   {
@@ -43,18 +43,18 @@ const team = [
     photo: '/images/team/monika.jpg',
     photoPosition: 'object-top',
     description:
-      'Monika ist Diakonin und leitet das Küchenteam der Hafenkirche. Mit ihrem warmen Herz, ihrer offenen Art und ihrem Talent für Gastfreundschaft sorgt sie dafür, dass sich nach dem Gottesdienst bei Kaffee und Kuchen echte Gemeinschaft entfaltet. Sie ist ein unverzichtbarer Teil der Gemeinde.',
+      'Monika ist Diakonin und leitet das Küchenteam der Hafenkirche. Sie hat außerdem eine Ausbildung als Seelsorgerin. Mit ihrem warmen Herz, ihrer offenen Art und ihrem Talent für Gastfreundschaft sorgt sie dafür, dass sich nach dem Gottesdienst bei Kaffee und Kuchen echte Gemeinschaft entfaltet. Sie ist ein unverzichtbarer Teil der Gemeinde.',
     highlight: 'Herzlich & einladend',
   },
   {
-    names: 'Iris Moesker',
-    role: 'Welcomedienst Leitung',
-    photo: '/images/team/iris.jpg',
-    photoPosition: 'object-[center_25%]',
+    names: 'Ari & Iris Moesker',
+    role: 'Marktplatzleitung · Welcomedienst Leitung',
+    photo: '/images/team/ari-iris-moesker.jpg',
+    photoPosition: 'object-center',
     containerStyle: { aspectRatio: '2/3', minHeight: '400px', maxHeight: '600px' } as React.CSSProperties,
     description:
-      'Iris leitet den Welcomedienst und sorgt dafür, dass sich jeder Besucher willkommen fühlt. Sie bringt ein großes Herz für Menschen und viel Erfahrung aus der Gemeindearbeit mit.',
-    highlight: 'Willkommen & Gastfreundschaft',
+      'Ari leitet den Hafenkirche Marktplatz und arbeitet als Ergotherapie-Fachkraft bei der Glückwerk Diakonie in Glückstadt. Iris leitet den Welcomedienst der Hafenkirche und arbeitet bei der Itzehoer Versicherung. Gemeinsam bringen sie viel Herzlichkeit, Verbindlichkeit und gelebten Glauben in die Gemeinde ein.',
+    highlight: 'Dienst am Menschen',
   },
 ]
 
@@ -62,42 +62,58 @@ export default function TeamPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-[#0a0f1e] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(201,168,76,0.1),transparent)] pointer-events-none" />
-        {/* Hero background photo */}
-        <div className="absolute inset-0">
-          <Image src="/images/young-people.jpg" alt="" fill className="object-cover opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1e]/60 to-[#0a0f1e]" />
-        </div>
+      <section className="pt-32 pb-20 bg-[#dfe8f5] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(235,213,50,0.1),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
-          <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
-              Die Menschen
-            </p>
-          </AnimatedChild>
-          <AnimatedChild delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-[0.95]">
-              Unser
-              <br />
-              <span className="gold-gradient-text">Team.</span>
-            </h1>
-          </AnimatedChild>
-          <AnimatedChild delay={0.25}>
-            <p className="text-gray-300 text-xl max-w-2xl leading-relaxed">
-              Wir sind keine perfekten Menschen, aber wir sind Menschen, die von einem
-              guten Gott geliebt werden und diese Liebe weitergeben möchten.
-            </p>
-          </AnimatedChild>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text */}
+            <div>
+              <AnimatedChild>
+                <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+                  Die Menschen
+                </p>
+              </AnimatedChild>
+              <AnimatedChild delay={0.1}>
+                <h1 className="text-5xl md:text-7xl font-black text-[#0E395B] mb-8 leading-[0.95]">
+                  Unser
+                  <br />
+                  <span className="gold-gradient-text">Team.</span>
+                </h1>
+              </AnimatedChild>
+              <AnimatedChild delay={0.25}>
+                <p className="text-[#345278] text-xl max-w-2xl leading-relaxed">
+                  Wir sind keine perfekten Menschen, aber wir sind Menschen, die von einem
+                  guten Gott geliebt werden und diese Liebe weitergeben möchten.
+                </p>
+              </AnimatedChild>
+            </div>
+
+            {/* Symbolbild */}
+            <AnimatedChild delay={0.15} direction="left">
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative w-[360px] h-[240px] md:w-[500px] md:h-[330px] drop-shadow-[0_0_42px_rgba(235,213,50,0.12)]">
+                  <Image
+                    src="/images/team-symbolbild-2.png"
+                    alt="Symbolbild Team"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 360px, 500px"
+
+                  />
+                </div>
+              </div>
+            </AnimatedChild>
+          </div>
         </div>
       </section>
 
       {/* Team Cards — uniform 3-column grid */}
-      <section className="py-24 bg-[#0d1526]">
+      <section className="py-24 bg-[#d4e0f0]">
         <div className="container-max">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {team.map((member, i) => (
+            {team.map((member) => (
               <StaggerItem key={member.names}>
-                <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
+                <div className="glass-card rounded-2xl overflow-hidden hover:border-[#EBD532]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
                   {/* Photo */}
                   <div
                     className="relative w-full overflow-hidden shrink-0"
@@ -111,14 +127,14 @@ export default function TeamPage() {
                       fill
                       className={`object-cover ${member.photoPosition} group-hover:scale-105 transition-transform duration-700`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      priority={i < 3}
+
                     />
                   </div>
                   {/* Text */}
                   <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold text-white">{member.names}</h3>
-                    <p className="text-[#c9a84c] text-xs font-semibold mt-1 mb-3">{member.role}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed flex-1">{member.description}</p>
+                    <h3 className="text-lg font-bold text-[#0E395B]">{member.names}</h3>
+                    <p className="text-[#c45aa0] text-xs font-semibold mt-1 mb-3">{member.role}</p>
+                    <p className="text-[#3f5f86] text-sm leading-relaxed flex-1">{member.description}</p>
                   </div>
                 </div>
               </StaggerItem>
@@ -135,26 +151,26 @@ export default function TeamPage() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[#0a0f1e]/50" />
+        <div className="absolute inset-0 bg-[#dfe8f5]/50" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-white text-2xl md:text-3xl font-black italic text-center px-4">
+          <p className="text-[#0E395B] text-2xl md:text-3xl font-black italic text-center px-4">
             „Menschen, die Gottes Liebe weitergeben."
           </p>
         </div>
       </div>
 
       {/* Join the team */}
-      <section className="py-24 bg-[#060c18]">
+      <section className="py-24 bg-[#c8d7ea]">
         <div className="container-max">
           <div className="max-w-3xl mx-auto text-center">
             <AnimatedChild>
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 border border-[#c9a84c]/30 flex items-center justify-center mx-auto mb-8">
-                <Heart className="w-7 h-7 text-[#c9a84c]" />
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#EBD532]/20 to-[#EBD532]/5 border border-[#EBD532]/30 flex items-center justify-center mx-auto mb-8">
+                <Heart className="w-7 h-7 text-[#c45aa0]" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
                 Werde Teil des Teams
               </h2>
-              <p className="text-gray-400 text-xl leading-relaxed mb-10">
+              <p className="text-[#3f5f86] text-xl leading-relaxed mb-10">
                 Wir sind immer offen für Menschen, die mitgestalten möchten.
                 Egal ob du schon lange Christ bist oder gerade erst anfängst:
                 bei uns gibt es Platz für dich.

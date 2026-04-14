@@ -40,7 +40,7 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#060c18] border-t border-[#c9a84c]/15">
+    <footer className="bg-[#c8d7ea] border-t border-[#EBD532]/15">
       <div className="container-max py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo + Tagline */}
@@ -51,17 +51,17 @@ export default function Footer() {
                   src="/logo.png"
                   alt="Hafenkirche Brunsbüttel"
                   fill
-                  className="object-contain drop-shadow-[0_0_8px_rgba(201,168,76,0.3)]"
+                  className="object-contain drop-shadow-[0_0_8px_rgba(235,213,50,0.3)]"
                 />
               </div>
-              <span className="text-xl font-bold text-white">
-                Hafen<span className="text-[#c9a84c]">kirche</span>
+              <span className="text-xl font-bold text-[#0E395B]">
+                Hafen<span className="text-[#c45aa0]">kirche</span>
               </span>
             </Link>
-            <p className="text-[#c9a84c] font-semibold text-sm tracking-widest uppercase mb-4">
+            <p className="text-[#c45aa0] font-semibold text-sm tracking-widest uppercase mb-4">
               Freiheit Leben
             </p>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-[#3f5f86] text-sm leading-relaxed">
               Eine lebendige Gemeinde in Brunsbüttel, verwurzelt in Gottes Liebe,
               ausgerichtet auf die Region Dithmarschen.
             </p>
@@ -72,7 +72,7 @@ export default function Footer() {
                 href="https://www.facebook.com/HafenkircheBrunsbuettel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-[#0d1526] border border-[#c9a84c]/20 flex items-center justify-center text-gray-400 hover:text-[#c9a84c] hover:border-[#c9a84c]/50 transition-all duration-200"
+                className="w-9 h-9 rounded-lg bg-[#d4e0f0] border border-[#EBD532]/20 flex items-center justify-center text-[#3f5f86] hover:text-[#c45aa0] hover:border-[#EBD532]/50 transition-all duration-200"
                 aria-label="Facebook"
               >
                 <FacebookIcon className="w-4 h-4" />
@@ -81,7 +81,7 @@ export default function Footer() {
                 href="https://www.instagram.com/hafenkirchebrunsbuttel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-[#0d1526] border border-[#c9a84c]/20 flex items-center justify-center text-gray-400 hover:text-[#c9a84c] hover:border-[#c9a84c]/50 transition-all duration-200"
+                className="w-9 h-9 rounded-lg bg-[#d4e0f0] border border-[#EBD532]/20 flex items-center justify-center text-[#3f5f86] hover:text-[#c45aa0] hover:border-[#EBD532]/50 transition-all duration-200"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="w-4 h-4" />
@@ -90,7 +90,7 @@ export default function Footer() {
                 href="https://www.youtube.com/@hafenkirchebrunsbuttel5266"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-[#0d1526] border border-[#c9a84c]/20 flex items-center justify-center text-gray-400 hover:text-[#c9a84c] hover:border-[#c9a84c]/50 transition-all duration-200"
+                className="w-9 h-9 rounded-lg bg-[#d4e0f0] border border-[#EBD532]/20 flex items-center justify-center text-[#3f5f86] hover:text-[#c45aa0] hover:border-[#EBD532]/50 transition-all duration-200"
                 aria-label="YouTube"
               >
                 <YoutubeIcon className="w-4 h-4" />
@@ -100,7 +100,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold mb-5 text-sm tracking-wider uppercase">
+            <h3 className="text-[#0E395B] font-semibold mb-5 text-sm tracking-wider uppercase">
               Seiten
             </h3>
             <ul className="space-y-3">
@@ -108,7 +108,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-[#c9a84c] text-sm transition-colors duration-200"
+                    className="text-[#3f5f86] hover:text-[#c45aa0] text-sm transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -119,22 +119,22 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold mb-5 text-sm tracking-wider uppercase">
+            <h3 className="text-[#0E395B] font-semibold mb-5 text-sm tracking-wider uppercase">
               Kontakt
             </h3>
             <div className="space-y-4">
               <div className="flex gap-3">
-                <MapPin className="w-4 h-4 text-[#c9a84c] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#c45aa0] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-gray-300 text-sm">Schleusenstraße 10</p>
-                  <p className="text-gray-300 text-sm">25541 Brunsbüttel</p>
+                  <p className="text-[#345278] text-sm">Schleusenstraße 10</p>
+                  <p className="text-[#345278] text-sm">25541 Brunsbüttel</p>
                 </div>
               </div>
               <div className="flex gap-3 items-center">
-                <Mail className="w-4 h-4 text-[#c9a84c] shrink-0" />
+                <Mail className="w-4 h-4 text-[#c45aa0] shrink-0" />
                 <a
                   href="mailto:info@hafenkirche.com"
-                  className="text-gray-300 text-sm hover:text-[#c9a84c] transition-colors"
+                  className="text-[#345278] text-sm hover:text-[#c45aa0] transition-colors"
                 >
                   info@hafenkirche.com
                 </a>
@@ -142,24 +142,24 @@ export default function Footer() {
             </div>
 
             {/* Service Times */}
-            <div className="mt-6 p-4 rounded-xl bg-[#0d1526] border border-[#c9a84c]/20">
-              <p className="text-[#c9a84c] text-xs font-semibold uppercase tracking-wider mb-2">
+            <div className="mt-6 p-4 rounded-xl bg-[#d4e0f0] border border-[#EBD532]/20">
+              <p className="text-[#c45aa0] text-xs font-semibold uppercase tracking-wider mb-2">
                 Gottesdienste
               </p>
-              <p className="text-gray-300 text-sm">Sonntags · 10:30 Uhr</p>
+              <p className="text-[#345278] text-sm">Sonntags · 10:30 Uhr</p>
             </div>
           </div>
 
           {/* Legal */}
           <div>
-            <h3 className="text-white font-semibold mb-5 text-sm tracking-wider uppercase">
+            <h3 className="text-[#0E395B] font-semibold mb-5 text-sm tracking-wider uppercase">
               Rechtliches
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/impressum"
-                  className="text-gray-400 hover:text-[#c9a84c] text-sm transition-colors duration-200"
+                  className="text-[#3f5f86] hover:text-[#c45aa0] text-sm transition-colors duration-200"
                 >
                   Impressum
                 </Link>
@@ -167,7 +167,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/impressum#datenschutz"
-                  className="text-gray-400 hover:text-[#c9a84c] text-sm transition-colors duration-200"
+                  className="text-[#3f5f86] hover:text-[#c45aa0] text-sm transition-colors duration-200"
                 >
                   Datenschutz
                 </Link>
@@ -178,10 +178,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[#c9a84c]/10">
+      <div className="border-t border-[#EBD532]/10">
         <div className="container-max py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-gray-500 text-sm">
+            <p className="text-[#5e76a0] text-sm">
               © {new Date().getFullYear()} Hafenkirche Brunsbüttel e.V. · Alle Rechte vorbehalten.
             </p>
             <p className="text-gray-600 text-xs">

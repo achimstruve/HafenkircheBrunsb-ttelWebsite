@@ -39,7 +39,7 @@ export default function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-[#0a0f1e]/95 backdrop-blur-md border-b border-[#c9a84c]/20 shadow-lg shadow-black/30'
+            ? 'bg-[#dfe8f5]/95 backdrop-blur-md border-b border-[#EBD532]/20 shadow-lg shadow-[#0E395B]/10'
             : 'bg-transparent'
         }`}
       >
@@ -52,12 +52,12 @@ export default function Navigation() {
                   src="/logo.png"
                   alt="Hafenkirche Brunsbüttel"
                   fill
-                  className="object-contain drop-shadow-[0_0_6px_rgba(201,168,76,0.4)]"
+                  className="object-contain drop-shadow-[0_0_6px_rgba(235,213,50,0.4)]"
                   priority
                 />
               </div>
-              <span className="text-xl font-bold text-white hidden sm:block">
-                Hafen<span className="text-[#c9a84c]">kirche</span>
+              <span className="text-xl font-bold text-[#0E395B] hidden sm:block">
+                Hafen<span className="text-[#c45aa0]">kirche</span>
               </span>
             </Link>
 
@@ -67,17 +67,17 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg hover:bg-white/5 ${
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg hover:bg-[#0E395B]/5 ${
                     pathname === link.href
-                      ? 'text-[#c9a84c]'
-                      : 'text-gray-300 hover:text-white'
+                      ? 'text-[#c45aa0]'
+                      : 'text-[#345278] hover:text-[#0E395B]'
                   }`}
                 >
                   {link.label}
                   {pathname === link.href && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-[#c9a84c] to-[#e8c56d] rounded-full"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-[#EBD532] to-[#f4e06b] rounded-full"
                     />
                   )}
                 </Link>
@@ -93,7 +93,7 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+              className="md:hidden p-2 rounded-lg text-[#345278] hover:text-[#0E395B] hover:bg-[#0E395B]/10 transition-colors"
               aria-label="Menü öffnen"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -119,9 +119,9 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#0d1526] border-l border-[#c9a84c]/20 shadow-2xl md:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#d4e0f0] border-l border-[#EBD532]/20 shadow-2xl md:hidden"
             >
-              <div className="flex items-center justify-between p-6 border-b border-[#c9a84c]/20">
+              <div className="flex items-center justify-between p-6 border-b border-[#EBD532]/20">
                 <Link href="/" className="flex items-center gap-2">
                   <div className="relative w-9 h-9 shrink-0">
                     <Image
@@ -131,13 +131,13 @@ export default function Navigation() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="font-bold text-white">
-                    Hafen<span className="text-[#c9a84c]">kirche</span>
+                  <span className="font-bold text-[#0E395B]">
+                    Hafen<span className="text-[#c45aa0]">kirche</span>
                   </span>
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-2 rounded-lg text-[#3f5f86] hover:text-[#0E395B] hover:bg-[#0E395B]/10 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -155,8 +155,8 @@ export default function Navigation() {
                       href={link.href}
                       className={`flex items-center px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
                         pathname === link.href
-                          ? 'bg-[#c9a84c]/15 text-[#c9a84c] border border-[#c9a84c]/30'
-                          : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                          ? 'bg-[#EBD532]/15 text-[#c45aa0] border border-[#EBD532]/30'
+                          : 'text-[#345278] hover:bg-[#0E395B]/5 hover:text-[#0E395B]'
                       }`}
                     >
                       {link.label}
@@ -164,8 +164,8 @@ export default function Navigation() {
                   </motion.div>
                 ))}
 
-                <div className="mt-4 pt-4 border-t border-[#c9a84c]/20">
-                  <p className="text-xs text-gray-500 text-center font-medium tracking-wider uppercase">
+                <div className="mt-4 pt-4 border-t border-[#EBD532]/20">
+                  <p className="text-xs text-[#5e76a0] text-center font-medium tracking-wider uppercase">
                     Freiheit Leben
                   </p>
                 </div>

@@ -10,14 +10,14 @@ export default function ImpressumPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-[#0a0f1e] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-10%,rgba(201,168,76,0.07),transparent)] pointer-events-none" />
+      <section className="pt-32 pb-16 bg-[#dfe8f5] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-10%,rgba(235,213,50,0.07),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
           <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+            <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
               Rechtliches
             </p>
-            <h1 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-black text-[#0E395B] mb-6 leading-tight">
               Impressum &amp;<br />
               <span className="gold-gradient-text">Datenschutz.</span>
             </h1>
@@ -26,7 +26,7 @@ export default function ImpressumPage() {
       </section>
 
       {/* Content */}
-      <section className="py-16 bg-[#0d1526]">
+      <section className="py-16 bg-[#d4e0f0]">
         <div className="container-max">
           <div className="max-w-3xl mx-auto space-y-16">
 
@@ -34,23 +34,23 @@ export default function ImpressumPage() {
             <div id="impressum">
             <AnimatedChild>
               <div className="glass-card rounded-2xl p-8 md:p-12">
-                <h2 className="text-3xl font-black text-white mb-8 pb-4 border-b border-[#c9a84c]/20">
+                <h2 className="text-3xl font-black text-[#0E395B] mb-8 pb-4 border-b border-[#EBD532]/20">
                   Impressum
                 </h2>
 
-                <div className="space-y-8 text-gray-300">
+                <div className="space-y-8 text-[#345278]">
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Angaben gemäß § 5 TMG
                     </h3>
-                    <p className="font-semibold text-white text-lg">Hafenkirche Brunsbüttel e.V.</p>
+                    <p className="font-semibold text-[#0E395B] text-lg">Hafenkirche Brunsbüttel e.V.</p>
                     <p>Schleusenstraße 10</p>
                     <p>25541 Brunsbüttel</p>
-                    <p className="mt-2 text-gray-400 text-sm">Vereinsregister: VR 2125 PI</p>
+                    <p className="mt-2 text-[#3f5f86] text-sm">Vereinsregister: VR 2125 PI</p>
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Vorstand
                     </h3>
                     <p>1. Vorstandsvorsitzender: Achim Struve</p>
@@ -58,14 +58,14 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Kontakt
                     </h3>
                     <p>
                       E-Mail:{' '}
                       <a
                         href="mailto:info@hafenkirche.com"
-                        className="text-[#c9a84c] hover:underline"
+                        className="text-[#c45aa0] hover:underline"
                       >
                         info@hafenkirche.com
                       </a>
@@ -74,7 +74,7 @@ export default function ImpressumPage() {
                       Website:{' '}
                       <a
                         href="https://hafenkirche.com"
-                        className="text-[#c9a84c] hover:underline"
+                        className="text-[#c45aa0] hover:underline"
                       >
                         www.hafenkirche.com
                       </a>
@@ -82,10 +82,10 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Haftung für Inhalte
                     </h3>
-                    <p className="text-sm leading-relaxed text-gray-400">
+                    <p className="text-sm leading-relaxed text-[#3f5f86]">
                       Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf
                       diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10
                       TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
@@ -100,10 +100,10 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Haftung für Links
                     </h3>
-                    <p className="text-sm leading-relaxed text-gray-400">
+                    <p className="text-sm leading-relaxed text-[#3f5f86]">
                       Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
                       wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch
                       keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
@@ -118,10 +118,10 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Urheberrecht
                     </h3>
-                    <p className="text-sm leading-relaxed text-gray-400">
+                    <p className="text-sm leading-relaxed text-[#3f5f86]">
                       Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
                       unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
                       Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
@@ -139,13 +139,13 @@ export default function ImpressumPage() {
             <div id="datenschutz">
             <AnimatedChild delay={0.15}>
               <div className="glass-card rounded-2xl p-8 md:p-12">
-                <h2 className="text-3xl font-black text-white mb-8 pb-4 border-b border-[#c9a84c]/20">
+                <h2 className="text-3xl font-black text-[#0E395B] mb-8 pb-4 border-b border-[#EBD532]/20">
                   Datenschutzerklärung
                 </h2>
 
-                <div className="space-y-8 text-gray-300 text-sm leading-relaxed">
+                <div className="space-y-8 text-[#345278] text-sm leading-relaxed">
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       1. Datenschutz auf einen Blick
                     </h3>
                     <p className="mb-3">
@@ -157,16 +157,16 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       Verantwortliche Stelle
                     </h3>
                     <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
                     <div className="mt-3 p-4 rounded-xl bg-white/5 border border-white/10">
-                      <p className="font-semibold text-white">Hafenkirche Brunsbüttel e.V.</p>
+                      <p className="font-semibold text-[#0E395B]">Hafenkirche Brunsbüttel e.V.</p>
                       <p>Schleusenstraße 10, 25541 Brunsbüttel</p>
                       <p>
                         E-Mail:{' '}
-                        <a href="mailto:info@hafenkirche.com" className="text-[#c9a84c] hover:underline">
+                        <a href="mailto:info@hafenkirche.com" className="text-[#c45aa0] hover:underline">
                           info@hafenkirche.com
                         </a>
                       </p>
@@ -174,10 +174,10 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       2. Datenerfassung auf dieser Website
                     </h3>
-                    <p className="font-semibold text-white mb-2">Kontaktformular</p>
+                    <p className="font-semibold text-[#0E395B] mb-2">Kontaktformular</p>
                     <p className="mb-4">
                       Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben
                       aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten
@@ -186,7 +186,7 @@ export default function ImpressumPage() {
                       erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b und f DSGVO.
                     </p>
 
-                    <p className="font-semibold text-white mb-2">Server-Log-Dateien</p>
+                    <p className="font-semibold text-[#0E395B] mb-2">Server-Log-Dateien</p>
                     <p>
                       Der Provider der Seiten erhebt und speichert automatisch Informationen in
                       Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies sind:
@@ -198,7 +198,7 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       3. Google Maps
                     </h3>
                     <p>
@@ -212,7 +212,7 @@ export default function ImpressumPage() {
                         href="https://policies.google.com/privacy"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#c9a84c] hover:underline"
+                        className="text-[#c45aa0] hover:underline"
                       >
                         policies.google.com/privacy
                       </a>
@@ -221,7 +221,7 @@ export default function ImpressumPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-[#c9a84c] font-bold text-sm uppercase tracking-wider mb-3">
+                    <h3 className="text-[#c45aa0] font-bold text-sm uppercase tracking-wider mb-3">
                       4. Ihre Rechte
                     </h3>
                     <p>
@@ -234,7 +234,7 @@ export default function ImpressumPage() {
                       Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht
                       Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Wenden
                       Sie sich für Anfragen jederzeit an uns unter{' '}
-                      <a href="mailto:info@hafenkirche.com" className="text-[#c9a84c] hover:underline">
+                      <a href="mailto:info@hafenkirche.com" className="text-[#c45aa0] hover:underline">
                         info@hafenkirche.com
                       </a>
                       .

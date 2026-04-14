@@ -1,8 +1,9 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { useRef, useState, useCallback } from 'react'
 import {
 
@@ -16,7 +17,9 @@ import {
   Mail,
 } from 'lucide-react'
 import { AnimatedChild, StaggerContainer, StaggerItem } from '@/components/AnimatedSection'
-import Lightbox, { type LightboxImage } from '@/components/Lightbox'
+import { type LightboxImage } from '@/components/Lightbox'
+
+const Lightbox = dynamic(() => import('@/components/Lightbox'), { ssr: false })
 
 const visionImages: LightboxImage[] = [
   { src: '/images/kreuz-gebet.jpg', alt: 'Gebet' },
@@ -52,7 +55,7 @@ const events = [
     time: '10:30 Uhr',
     icon: Star,
     description: 'Gemeinsam feiern, anbeten und Gottes Wort hören.',
-    color: 'from-[#c9a84c] to-[#e8c56d]',
+    color: 'from-[#EBD532] to-[#f4e06b]',
     photo: '/images/achim-predigt.jpg',
     cta: null as null | { label: string; href: string },
   },
@@ -62,7 +65,7 @@ const events = [
     time: '19:00 Uhr',
     icon: Heart,
     description: 'Im Gebet füreinander eintreten und Gott begegnen.',
-    color: 'from-[#3060b0] to-[#4a80d0]',
+    color: 'from-[#EBD532] to-[#f4e06b]',
     photo: '/images/gebet-im-gottesdienst.jpg',
     cta: null as null | { label: string; href: string },
   },
@@ -72,8 +75,8 @@ const events = [
     time: '19:00 Uhr',
     icon: Users,
     description: 'Einfach online reinschnuppern, Fragen stellen, beten — ohne Verpflichtung.',
-    color: 'from-[#254a8a] to-[#3060b0]',
-    photo: '/images/young-ladies-church.jpg',
+    color: 'from-[#EBD532] to-[#f4e06b]',
+    photo: '/images/worship-microphone.jpg',
     cta: { label: 'Meeting beitreten', href: 'https://us02web.zoom.us/j/86582901445?pwd=TC9JNnV1Y3hiVjQxU3YxSmthMko2QT09' },
   },
 ]
@@ -108,69 +111,36 @@ export default function HomePage() {
   const closeGallery = useCallback(() => setGalleryIndex(null), [])
   const closeVision = useCallback(() => setVisionIndex(null), [])
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
     <>
       {/* ─── HERO ─── */}
       <section
         ref={heroRef}
-        className="relative z-[1] min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0f1e]"
+        className="relative z-[1] min-h-screen pt-20 md:pt-24 flex items-center justify-center overflow-hidden bg-[#dfe8f5]"
       >
         {/* Static background layers */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Worship background photo */}
+          {/* Hero background photo */}
           <div className="absolute inset-0">
             <Image
-              src="/images/hero-worship.png"
+              src="/images/hero-worship.jpg"
               alt=""
               fill
-              className="object-cover object-center opacity-10"
+              className="object-cover object-center opacity-28"
               priority
             />
           </div>
+          <div className="absolute inset-0 bg-[#dfe8f5]/55" />
+
           {/* Radial gradient glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(201,168,76,0.15),transparent)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_80%_80%,rgba(37,74,138,0.2),transparent)]" />
-          {/* Grid pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(201,168,76,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.5) 1px, transparent 1px)',
-              backgroundSize: '60px 60px',
-            }}
-          />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(235,213,50,0.12),transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_80%_80%,rgba(37,74,138,0.16),transparent)]" />
+
         </div>
 
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-[#c9a84c]/40"
-            style={{
-              left: `${15 + i * 14}%`,
-              top: `${20 + (i % 3) * 25}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.2, 0.6, 0.2],
-            }}
-            transition={{
-              duration: 3 + i * 0.5,
-              repeat: Infinity,
-              delay: i * 0.4,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
 
         <motion.div
-          style={{ opacity: heroOpacity }}
           className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
           {/* Logo Icon */}
@@ -180,7 +150,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
             className="flex justify-center mb-8"
           >
-            <div className="relative w-28 h-28 drop-shadow-[0_0_24px_rgba(201,168,76,0.5)]">
+            <div className="relative w-28 h-28">
               <Image
                 src="/logo-icon.png"
                 alt="Hafenkirche Brunsbüttel"
@@ -196,7 +166,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-[#c9a84c] text-sm font-semibold tracking-[0.3em] uppercase mb-6"
+            className="text-[#c45aa0] text-sm font-semibold tracking-[0.3em] uppercase mb-6"
           >
             Lebendige Kirche · Brunsbüttel
           </motion.p>
@@ -206,7 +176,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-6xl md:text-8xl lg:text-[104px] font-black text-white leading-[0.9] tracking-tight mb-8"
+            className="text-6xl md:text-8xl lg:text-[104px] font-black text-[#0E395B] leading-[0.9] tracking-tight mb-8"
           >
             Freiheit
             <br />
@@ -218,7 +188,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7 }}
-            className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
+            className="text-[#345278] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
           >
             Eine lebendige Gemeinde für Brunsbüttel, Dithmarschen und den Norden,
             verwurzelt in Gottes Liebe, fokussiert auf Jesus und ausgerichtet auf
@@ -245,9 +215,9 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.6 }}
-            className="mt-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm"
+            className="mt-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#3f5f86] text-sm"
           >
-            <MapPin className="w-3.5 h-3.5 text-[#c9a84c]" />
+            <MapPin className="w-3.5 h-3.5 text-[#c45aa0]" />
             Schleusenstraße 10 · 25541 Brunsbüttel
           </motion.div>
         </motion.div>
@@ -257,30 +227,27 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-xs tracking-widest uppercase"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#5e76a0] text-xs tracking-widest uppercase"
         >
           <span>Scroll</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <ChevronDown className="w-5 h-5 text-[#c9a84c]" />
-          </motion.div>
+          <div>
+            <ChevronDown className="w-5 h-5 text-[#c45aa0]" />
+          </div>
         </motion.div>
       </section>
 
       {/* ─── EVENTS ─── */}
-      <section className="relative z-[1] py-24 bg-[#0d1526]">
+      <section className="relative z-[1] py-24 bg-[#d4e0f0]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-16">
-              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 Regelmäßige Treffen
               </p>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
                 Wann wir uns treffen
               </h2>
-              <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              <p className="text-[#3f5f86] text-lg max-w-xl mx-auto">
                 Komm einfach vorbei, wir freuen uns auf dich!
               </p>
             </div>
@@ -289,7 +256,7 @@ export default function HomePage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {events.map((event) => (
               <StaggerItem key={event.title}>
-                <div className="glass-card rounded-2xl overflow-hidden hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
+                <div className="glass-card rounded-2xl overflow-hidden hover:border-[#EBD532]/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col h-full">
                   {event.photo ? (
                     <div className="relative h-64 overflow-hidden shrink-0">
                       <Image
@@ -305,29 +272,29 @@ export default function HomePage() {
                     <div
                       className={`w-12 h-12 rounded-xl bg-gradient-to-br ${event.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
                     >
-                      <event.icon className="w-6 h-6 text-white" />
+                      <event.icon className="w-6 h-6 text-[#0E395B]" />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                    <p className="text-gray-400 text-sm mb-4 leading-relaxed flex-1">{event.description}</p>
+                    <h3 className="text-xl font-bold text-[#0E395B] mb-2">{event.title}</h3>
+                    <p className="text-[#3f5f86] text-sm mb-4 leading-relaxed flex-1">{event.description}</p>
                     {event.cta && (
                       <a
                         href={event.cta.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 mb-4 text-sm font-semibold text-[#c9a84c] hover:underline"
+                        className="inline-flex items-center gap-2 mb-4 text-sm font-semibold text-[#c45aa0] hover:underline"
                       >
                         {event.cta.label} →
                       </a>
                     )}
-                    <div className="flex items-center gap-4 pt-5 border-t border-white/5">
-                      <div className="flex items-center gap-1.5 text-gray-400 text-sm">
+                    <div className="flex items-center gap-4 pt-5 border-t border-[#0E395B]/10">
+                      <div className="flex items-center gap-1.5 text-[#3f5f86] text-sm">
                         <Clock className="w-4 h-4" />
                         {event.time}
                       </div>
                       {!event.cta && (
                         <a
                           href="#standort"
-                          className="ml-auto flex items-center gap-1 text-xs text-gray-500 hover:text-[#c9a84c] transition-colors duration-200"
+                          className="ml-auto flex items-center gap-1 text-xs text-[#5e76a0] hover:text-[#c45aa0] transition-colors duration-200"
                         >
                           <MapPin className="w-3.5 h-3.5" />
                           Standort
@@ -345,27 +312,27 @@ export default function HomePage() {
       </section>
 
       {/* ─── VISION TEASER ─── */}
-      <section className="relative z-[1] py-24 bg-[#0a0f1e] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(201,168,76,0.07),transparent)] pointer-events-none" />
+      <section className="relative z-[1] py-24 bg-[#dfe8f5] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(235,213,50,0.07),transparent)] pointer-events-none" />
         <div className="container-max relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
             <AnimatedChild direction="right">
               <div>
-                <div className="w-16 h-1 bg-gradient-to-r from-[#c9a84c] to-transparent mb-8" />
-                <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-6">
+                <div className="w-16 h-1 bg-gradient-to-r from-[#EBD532] to-transparent mb-8" />
+                <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-6">
                   Unsere Vision
                 </p>
-                <blockquote className="text-2xl md:text-3xl text-gray-200 leading-relaxed font-light italic mb-8">
+                <blockquote className="text-2xl md:text-3xl text-[#0E395B] leading-relaxed font-light italic mb-8">
                   „Unser Herz ist es, Jesu Herz für Brunsbüttel, Dithmarschen und den Norden
                   Deutschlands zu leben."
                 </blockquote>
-                <p className="text-gray-400 text-lg leading-relaxed mb-10">
+                <p className="text-[#3f5f86] text-lg leading-relaxed mb-10">
                   Wir glauben, dass die Liebe Gottes das Leben von Menschen verändern kann,
                   hier in der Hafenstadt an der Elbe, mitten im Alltag.
                 </p>
                 <Link
                   href="/vision"
-                  className="inline-flex items-center gap-2 text-[#c9a84c] font-semibold hover:gap-4 transition-all duration-300 text-lg"
+                  className="inline-flex items-center gap-2 text-[#c45aa0] font-semibold hover:gap-4 transition-all duration-300 text-lg"
                 >
                   Mehr über unsere Vision
                   <ArrowRight className="w-5 h-5" />
@@ -401,14 +368,14 @@ export default function HomePage() {
       </section>
 
       {/* ─── VALUES PREVIEW ─── */}
-      <section className="relative z-[1] py-24 bg-[#060c18]">
+      <section className="relative z-[1] py-24 bg-[#c8d7ea]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-16">
-              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 Was uns trägt
               </p>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
                 Unsere Werte
               </h2>
             </div>
@@ -417,11 +384,11 @@ export default function HomePage() {
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {valuesPreview.map((value) => (
               <StaggerItem key={value.title}>
-                <div className="relative p-7 rounded-2xl bg-[#0d1526] border border-[#c9a84c]/15 hover:border-[#c9a84c]/40 transition-all duration-300 group hover:-translate-y-1 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#c9a84c]/0 to-[#c9a84c]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative p-7 rounded-2xl bg-[#d4e0f0] border border-[#EBD532]/15 hover:border-[#EBD532]/40 transition-all duration-300 group hover:-translate-y-1 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#EBD532]/0 to-[#EBD532]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="text-3xl mb-5">{value.icon}</div>
-                  <h3 className="text-white font-bold text-lg mb-3">{value.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{value.text}</p>
+                  <h3 className="text-[#0E395B] font-bold text-lg mb-3">{value.title}</h3>
+                  <p className="text-[#3f5f86] text-sm leading-relaxed">{value.text}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -442,12 +409,12 @@ export default function HomePage() {
       </section>
 
       {/* ─── PHOTO GALLERY: Gemeindeleben ─── */}
-      <section className="relative z-[1] py-24 bg-[#0a0f1e]">
+      <section className="relative z-[1] py-24 bg-[#dfe8f5]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-12">
-              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-4">Einblicke</p>
-              <h2 className="text-4xl md:text-5xl font-black text-white">Unser Gemeindeleben</h2>
+              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">Einblicke</p>
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B]">Unser Gemeindeleben</h2>
             </div>
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
@@ -487,7 +454,7 @@ export default function HomePage() {
                 { src: '/videos/jesus-starb-fuer.mp4', label: '„Jesus starb für…"' },
                 { src: '/videos/licht-kette.mp4', label: 'Das Licht Jesu weitergeben' },
               ].map(({ src, label }) => (
-                <div key={src} className="relative rounded-xl overflow-hidden bg-[#0d1526] border border-white/8">
+                <div key={src} className="relative rounded-xl overflow-hidden bg-[#d4e0f0] border border-[#0E395B]/12">
                   <video
                     src={src}
                     autoPlay
@@ -498,7 +465,7 @@ export default function HomePage() {
                     className="w-full max-h-64 object-cover"
                     aria-label={label}
                   />
-                  <p className="px-4 py-2 text-gray-400 text-xs font-medium">{label}</p>
+                  <p className="px-4 py-2 text-[#3f5f86] text-xs font-medium">{label}</p>
                 </div>
               ))}
             </div>
@@ -507,17 +474,17 @@ export default function HomePage() {
       </section>
 
       {/* ─── PREDIGTEN / YOUTUBE ─── */}
-      <section className="relative z-[1] py-24 bg-[#0d1526]">
+      <section className="relative z-[1] py-24 bg-[#d4e0f0]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-10">
-              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 YouTube
               </p>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-4">
                 Aktuelle Predigten
               </h2>
-              <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              <p className="text-[#3f5f86] text-lg max-w-xl mx-auto">
                 Schau dir unsere neuesten Predigten auf YouTube an.
               </p>
             </div>
@@ -543,10 +510,9 @@ export default function HomePage() {
                 href="https://www.youtube.com/@hafenkirchebrunsbuttel5266"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 outline-button"
+                className="inline-flex items-center outline-button"
               >
                 Alle Videos auf YouTube
-                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </AnimatedChild>
@@ -554,49 +520,46 @@ export default function HomePage() {
       </section>
 
       {/* ─── TEAM TEASER ─── */}
-      <section className="relative z-[1] py-24 bg-[#0a0f1e]">
+      <section className="relative z-[1] py-24 bg-[#dfe8f5]">
         <div className="container-max max-w-2xl mx-auto text-center">
           <AnimatedChild>
-            <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+            <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
               Wer wir sind
             </p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-7 leading-tight">
-              Menschen mit
+            <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-7 leading-tight">
+              Kinder Gottes,
               <br />
-              <span className="gold-gradient-text">echtem Herz.</span>
+              <span className="gold-gradient-text">geliebt vom Vater.</span>
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-10">
-              Familien, Handwerker, Lehrer, Rentner: Wir kommen aus ganz verschiedenen
-              Lebenswelten. Was uns verbindet, ist die Liebe zu Gott und zu den Menschen
-              in dieser Region.
+            <p className="text-[#3f5f86] text-lg leading-relaxed mb-10">
+              Wir sind unterwegs mit Jesus und lernen gemeinsam, Glauben im Alltag zu leben.
             </p>
-            <Link href="/team" className="gold-button inline-flex items-center gap-2">
+            <Link href="/team" className="gold-button inline-flex items-center whitespace-nowrap">
               Das Team kennenlernen
-              <ArrowRight className="w-4 h-4" />
             </Link>
           </AnimatedChild>
         </div>
       </section>
 
       {/* ─── MAP & LOCATION ─── */}
-      <section id="standort" className="relative z-[1] py-24 bg-[#0d1526]">
+      <section id="standort" className="relative z-[1] py-24 bg-[#d4e0f0]">
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-12">
-              <p className="text-[#c9a84c] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 Wo wir sind
               </p>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
                 Komm vorbei
               </h2>
-              <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              <p className="text-[#3f5f86] text-lg max-w-xl mx-auto">
                 Du findest uns in Brunsbüttel, mitten in der Stadt, nah an den Menschen.
               </p>
             </div>
           </AnimatedChild>
 
           <AnimatedChild delay={0.15}>
-            <div className="relative h-96 rounded-2xl overflow-hidden border border-[#c9a84c]/20 shadow-xl shadow-black/40 mb-4">
+            <div className="relative h-96 rounded-2xl overflow-hidden border border-[#EBD532]/20 shadow-xl shadow-black/40 mb-4">
               <Image
                 src="/images/church-building.jpg"
                 alt="Hafenkirche Brunsbüttel Gebäude"
@@ -605,15 +568,15 @@ export default function HomePage() {
                 sizes="(max-width: 768px) 100vw, 800px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0d1526]/50 to-transparent" />
-              <div className="absolute bottom-4 left-5 text-white">
+              <div className="absolute bottom-4 left-5 text-[#0E395B]">
                 <p className="font-bold text-sm">Hafenkirche Brunsbüttel</p>
-                <p className="text-gray-300 text-xs">Schleusenstraße 10</p>
+                <p className="text-[#345278] text-xs">Schleusenstraße 10</p>
               </div>
             </div>
           </AnimatedChild>
 
           <AnimatedChild delay={0.2}>
-            <div className="rounded-2xl overflow-hidden border border-[#c9a84c]/20 shadow-2xl shadow-black/40">
+            <div className="rounded-2xl overflow-hidden border border-[#EBD532]/20 shadow-2xl shadow-black/40">
               <iframe
                 src="https://maps.google.com/maps?q=Schleusenstra%C3%9Fe+10%2C+25541+Brunsbüttel&output=embed"
                 width="100%"
@@ -630,19 +593,19 @@ export default function HomePage() {
           <AnimatedChild delay={0.3}>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl glass-card">
-                <MapPin className="w-5 h-5 text-[#c9a84c]" />
+                <MapPin className="w-5 h-5 text-[#c45aa0]" />
                 <div>
-                  <p className="text-white font-semibold text-sm">Adresse</p>
-                  <p className="text-gray-400 text-sm">Schleusenstraße 10, 25541 Brunsbüttel</p>
+                  <p className="text-[#0E395B] font-semibold text-sm">Adresse</p>
+                  <p className="text-[#3f5f86] text-sm">Schleusenstraße 10, 25541 Brunsbüttel</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl glass-card">
-                <Mail className="w-5 h-5 text-[#c9a84c]" />
+                <Mail className="w-5 h-5 text-[#c45aa0]" />
                 <div>
-                  <p className="text-white font-semibold text-sm">E-Mail</p>
+                  <p className="text-[#0E395B] font-semibold text-sm">E-Mail</p>
                   <a
                     href="mailto:info@hafenkirche.com"
-                    className="text-gray-400 text-sm hover:text-[#c9a84c] transition-colors"
+                    className="text-[#3f5f86] text-sm hover:text-[#c45aa0] transition-colors"
                   >
                     info@hafenkirche.com
                   </a>
@@ -658,23 +621,23 @@ export default function HomePage() {
       <Lightbox images={visionImages} currentIndex={visionIndex} onClose={closeVision} onNavigate={setVisionIndex} />
 
       {/* ─── FINAL CTA ─── */}
-      <section className="relative z-[1] py-32 bg-[#0a0f1e] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(201,168,76,0.08),transparent)] pointer-events-none" />
+      <section className="relative z-[1] py-32 bg-[#dfe8f5] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(235,213,50,0.08),transparent)] pointer-events-none" />
         <div className="container-max relative z-10 text-center">
           <AnimatedChild>
-            <div className="relative w-16 h-16 mx-auto mb-8 drop-shadow-[0_0_12px_rgba(201,168,76,0.4)]">
+            <div className="relative w-16 h-16 mx-auto mb-8">
               <Image src="/logo-icon.png" alt="Hafenkirche Brunsbüttel" fill className="object-contain" />
             </div>
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-[#0E395B] mb-8 leading-tight">
               Du bist
               <br />
               <span className="gold-gradient-text">herzlich willkommen.</span>
             </h2>
           </AnimatedChild>
           <AnimatedChild delay={0.25}>
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-[#3f5f86] text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
               Egal wer du bist, wo du herkommst oder was dich beschäftigt:
               Bei uns gibt es Platz für dich.
             </p>
