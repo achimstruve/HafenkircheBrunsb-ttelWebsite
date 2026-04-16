@@ -91,7 +91,7 @@ export default function TeamPage() {
             {/* Symbolbild */}
             <AnimatedChild delay={0.15} direction="left">
               <div className="flex justify-center lg:justify-end">
-                <div className="relative w-[360px] h-[240px] md:w-[500px] md:h-[330px] drop-shadow-[0_0_42px_rgba(235,213,50,0.12)]">
+                <div className="relative w-[360px] h-[240px] md:w-[500px] md:h-[330px]">
                   <Image
                     src="/images/team-symbolbild-2.png"
                     alt="Symbolbild Team"

@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
@@ -75,8 +74,7 @@ export default function Navigation() {
                 >
                   {link.label}
                   {pathname === link.href && (
-                    <motion.div
-                      layoutId="nav-indicator"
+                    <div
                       className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-[#EBD532] to-[#f4e06b] rounded-full"
                     />
                   )}
@@ -103,22 +101,13 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile Drawer */}
-      <AnimatePresence>
         {mobileOpen && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+            <div
               className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
               onClick={() => setMobileOpen(false)}
             />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            <div
               className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#d4e0f0] border-l border-[#EBD532]/20 shadow-2xl md:hidden"
             >
               <div className="flex items-center justify-between p-6 border-b border-[#EBD532]/20">
@@ -145,11 +134,8 @@ export default function Navigation() {
 
               <div className="p-6 flex flex-col gap-2">
                 {navLinks.map((link, index) => (
-                  <motion.div
+                  <div
                     key={link.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 + 0.1 }}
                   >
                     <Link
                       href={link.href}
@@ -161,7 +147,7 @@ export default function Navigation() {
                     >
                       {link.label}
                     </Link>
-                  </motion.div>
+                  </div>
                 ))}
 
                 <div className="mt-4 pt-4 border-t border-[#EBD532]/20">
@@ -170,10 +156,9 @@ export default function Navigation() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </>
         )}
-      </AnimatePresence>
     </>
   )
 }

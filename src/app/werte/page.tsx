@@ -93,7 +93,7 @@ export default function WertePage() {
             {/* Symbolbild */}
             <AnimatedChild delay={0.15} direction="left">
               <div className="flex justify-center lg:justify-end">
-                <div className="relative w-[360px] h-[240px] md:w-[520px] md:h-[340px] drop-shadow-[0_0_42px_rgba(235,213,50,0.12)]">
+                <div className="relative w-[360px] h-[240px] md:w-[520px] md:h-[340px]">
                   <Image
                     src="/images/werte-schatz.png"
                     alt="Symbolbild Werte"

@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
@@ -140,67 +139,52 @@ export default function HomePage() {
         </div>
 
 
-        <motion.div
+        <div
           className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
           {/* Logo Icon */}
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
-            className="flex justify-center mb-8"
+          <div
+            className="flex justify-center mb-8 hero-anim-logo"
           >
             <div className="relative w-28 h-28">
               <Image
-                src="/logo-icon.png"
+                src="/logo-icon.webp"
                 alt="Hafenkirche Brunsbüttel"
                 fill
                 className="object-contain"
                 priority
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-[#0d1526] text-sm font-semibold tracking-[0.3em] uppercase mb-6"
+          <p
+            className="text-[#0d1526] text-sm font-semibold tracking-[0.3em] uppercase mb-6 hero-anim-tagline"
           >
             Lebendige Kirche · Brunsbüttel
-          </motion.p>
+          </p>
 
           {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-6xl md:text-8xl lg:text-[104px] font-black text-[#0E395B] leading-[0.9] tracking-tight mb-8"
+          <h1
+            className="text-6xl md:text-8xl lg:text-[104px] font-black text-[#0E395B] leading-[0.9] tracking-tight mb-8 hero-anim-heading"
           >
             Freiheit
             <br />
             <span className="gold-gradient-text">Leben.</span>
-          </motion.h1>
+          </h1>
 
           {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.7 }}
-            className="text-[#345278] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
+          <p
+            className="text-[#345278] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 hero-anim-subtext"
           >
             Eine lebendige Gemeinde für Brunsbüttel, Dithmarschen und den Norden,
             verwurzelt in Gottes Liebe, fokussiert auf Jesus und ausgerichtet auf
             die Menschen dieser Region.
-          </motion.p>
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center hero-anim-cta"
           >
             <Link href="/vision" className="gold-button text-base">
               Unsere Vision
@@ -208,32 +192,26 @@ export default function HomePage() {
             <Link href="/kontakt" className="outline-button text-base">
               Kontakt aufnehmen
             </Link>
-          </motion.div>
+          </div>
 
           {/* Location badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.6 }}
-            className="mt-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#3f5f86] text-sm"
+          <div
+            className="mt-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#3f5f86] text-sm hero-anim-location"
           >
             <MapPin className="w-3.5 h-3.5 text-[#0d1526]" />
             Schleusenstraße 10 · 25541 Brunsbüttel
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#0d1526] text-xs tracking-widest uppercase"
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#0d1526] text-xs tracking-widest uppercase hero-anim-scroll"
         >
           <span>Scroll</span>
           <div>
             <ChevronDown className="w-5 h-5 text-[#0d1526]" />
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ─── EVENTS ─── */}
@@ -626,7 +604,7 @@ export default function HomePage() {
         <div className="container-max relative z-10 text-center">
           <AnimatedChild>
             <div className="relative w-16 h-16 mx-auto mb-8">
-              <Image src="/logo-icon.png" alt="Hafenkirche Brunsbüttel" fill className="object-contain" />
+              <Image src="/logo-icon.webp" alt="Hafenkirche Brunsbüttel" fill className="object-contain" />
             </div>
           </AnimatedChild>
           <AnimatedChild delay={0.1}>
@@ -643,7 +621,7 @@ export default function HomePage() {
             </p>
           </AnimatedChild>
           <AnimatedChild delay={0.4}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center hero-anim-cta">
               <Link href="/kontakt" className="gold-button text-lg py-4 px-8">
                 Kontakt aufnehmen
               </Link>
