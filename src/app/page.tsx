@@ -124,7 +124,7 @@ export default function HomePage() {
           {/* Hero background photo */}
           <div className="absolute inset-0">
             <Image
-              src="/images/hero-worship.jpg"
+              src="/images/hero-worship.webp"
               alt=""
               fill
               className="object-cover object-center opacity-28"
@@ -166,7 +166,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-[#c45aa0] text-sm font-semibold tracking-[0.3em] uppercase mb-6"
+            className="text-[#0d1526] text-sm font-semibold tracking-[0.3em] uppercase mb-6"
           >
             Lebendige Kirche · Brunsbüttel
           </motion.p>
@@ -217,7 +217,7 @@ export default function HomePage() {
             transition={{ delay: 1.1, duration: 0.6 }}
             className="mt-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#3f5f86] text-sm"
           >
-            <MapPin className="w-3.5 h-3.5 text-[#c45aa0]" />
+            <MapPin className="w-3.5 h-3.5 text-[#0d1526]" />
             Schleusenstraße 10 · 25541 Brunsbüttel
           </motion.div>
         </motion.div>
@@ -227,11 +227,11 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#5e76a0] text-xs tracking-widest uppercase"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#0d1526] text-xs tracking-widest uppercase"
         >
           <span>Scroll</span>
           <div>
-            <ChevronDown className="w-5 h-5 text-[#c45aa0]" />
+            <ChevronDown className="w-5 h-5 text-[#0d1526]" />
           </div>
         </motion.div>
       </section>
@@ -241,7 +241,7 @@ export default function HomePage() {
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-16">
-              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 Regelmäßige Treffen
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
@@ -281,7 +281,7 @@ export default function HomePage() {
                         href={event.cta.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 mb-4 text-sm font-semibold text-[#c45aa0] hover:underline"
+                        className="inline-flex items-center gap-2 mb-4 text-sm font-semibold text-[#0d1526] hover:underline"
                       >
                         {event.cta.label} →
                       </a>
@@ -294,7 +294,7 @@ export default function HomePage() {
                       {!event.cta && (
                         <a
                           href="#standort"
-                          className="ml-auto flex items-center gap-1 text-xs text-[#5e76a0] hover:text-[#c45aa0] transition-colors duration-200"
+                          className="ml-auto flex items-center gap-1 text-xs text-[#0d1526] hover:text-[#c9a84c] transition-colors duration-200"
                         >
                           <MapPin className="w-3.5 h-3.5" />
                           Standort
@@ -319,7 +319,7 @@ export default function HomePage() {
             <AnimatedChild direction="right">
               <div>
                 <div className="w-16 h-1 bg-gradient-to-r from-[#EBD532] to-transparent mb-8" />
-                <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-6">
+                <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-6">
                   Unsere Vision
                 </p>
                 <blockquote className="text-2xl md:text-3xl text-[#0E395B] leading-relaxed font-light italic mb-8">
@@ -332,7 +332,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/vision"
-                  className="inline-flex items-center gap-2 text-[#c45aa0] font-semibold hover:gap-4 transition-all duration-300 text-lg"
+                  className="inline-flex items-center gap-2 text-[#0d1526] font-semibold hover:gap-4 transition-all duration-300 text-lg"
                 >
                   Mehr über unsere Vision
                   <ArrowRight className="w-5 h-5" />
@@ -372,7 +372,7 @@ export default function HomePage() {
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-16">
-              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 Was uns trägt
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
@@ -401,7 +401,6 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 outline-button"
               >
                 Alle 7 Werte entdecken
-                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </AnimatedChild>
@@ -413,7 +412,7 @@ export default function HomePage() {
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-12">
-              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">Einblicke</p>
+              <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-4">Einblicke</p>
               <h2 className="text-4xl md:text-5xl font-black text-[#0E395B]">Unser Gemeindeleben</h2>
             </div>
           </AnimatedChild>
@@ -478,7 +477,7 @@ export default function HomePage() {
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-10">
-              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 YouTube
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-4">
@@ -498,6 +497,7 @@ export default function HomePage() {
                   title="Hafenkirche Brunsbüttel Predigten"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+          loading="lazy"
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
@@ -523,7 +523,7 @@ export default function HomePage() {
       <section className="relative z-[1] py-24 bg-[#dfe8f5]">
         <div className="container-max max-w-2xl mx-auto text-center">
           <AnimatedChild>
-            <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
+            <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-5">
               Wer wir sind
             </p>
             <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-7 leading-tight">
@@ -546,7 +546,7 @@ export default function HomePage() {
         <div className="container-max">
           <AnimatedChild>
             <div className="text-center mb-12">
-              <p className="text-[#c45aa0] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-[#0d1526] text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 Wo wir sind
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-[#0E395B] mb-6">
@@ -593,19 +593,19 @@ export default function HomePage() {
           <AnimatedChild delay={0.3}>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl glass-card">
-                <MapPin className="w-5 h-5 text-[#c45aa0]" />
+                <MapPin className="w-5 h-5 text-[#0d1526]" />
                 <div>
                   <p className="text-[#0E395B] font-semibold text-sm">Adresse</p>
                   <p className="text-[#3f5f86] text-sm">Schleusenstraße 10, 25541 Brunsbüttel</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl glass-card">
-                <Mail className="w-5 h-5 text-[#c45aa0]" />
+                <Mail className="w-5 h-5 text-[#0d1526]" />
                 <div>
                   <p className="text-[#0E395B] font-semibold text-sm">E-Mail</p>
                   <a
                     href="mailto:info@hafenkirche.com"
-                    className="text-[#3f5f86] text-sm hover:text-[#c45aa0] transition-colors"
+                    className="text-[#3f5f86] text-sm hover:text-[#c9a84c] transition-colors"
                   >
                     info@hafenkirche.com
                   </a>
