@@ -76,7 +76,7 @@ const events = [
     description: 'Einfach online reinschnuppern, Fragen stellen, beten — ohne Verpflichtung.',
     color: 'from-[#EBD532] to-[#f4e06b]',
     photo: '/images/worship-microphone.jpg',
-    cta: { label: 'Meeting beitreten', href: 'https://us02web.zoom.us/j/86582901445?pwd=TC9JNnV1Y3hiVjQxU3YxSmthMko2QT09' },
+    cta: { label: 'Meeting beitreten', href: '/mutmacher' },
   },
 ]
 
